@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Lilas">
+  <meta name="generator" content="Lilas">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+  <title>إضافة عضو جديد</title>
+
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <link href="../css/navs.css" rel="stylesheet">
+  <link href="../css/add_account.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+  <header class="navbar sticky-top sticky-top flex-md-nowrap p-0 shadow" style="background-color:  rgb(7, 48, 78);">
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
+      <div class="imgcontainer">
+
+        <img src="../Img/Logo.jpg" alt="Avatar" class="avatar">
+      </div>
+    </a>
+
+    <div class="navbar-nav col-md-1 col-lg-1">
+      <div class="nav-item text-nowrap ">
+        <p class=" px-3 m-2" id="time">time</p>
+      </div>
+    </div>
+    <div class="navbar-nav col-md-8 col-lg-9" style=" text-align:left;">
+      <div class="nav-item text-nowrap ">
+        <a class="nav-link  px-3" href="#">تسجيل الخروج</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+
+
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 col-sm-12 d-md-block  sidebar collapse">
+        <div class="position-sticky pt-3  sidebar-sticky">
+          <ul class="nav flex-column ">
+            <li class="mb-1 nav-item">
+              <a class="nav-link " aria-current="page" href="../html/dashboard.html">
+                <span data-feather="home" class="align-text-bottom"></span>
+                لوحة القيادة
+              </a>
+            </li>
+            <li class="mb-1 nav-item ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#cases-collapse" aria-expanded="false">
+                <span data-feather="file" class="align-text-bottom"></span>
+                القضايا
+
+              </button>
+
+              <div class="collapse collapse-items" id="cases-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li> <a href="../html/add_case.html" class="nav-link d-inline-flex collapse-items">
+                    <span data-feather="file-plus" class="align-text-bottom"></span>
+
+                      إضافة قضية جديدة
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="file-text" class="align-text-bottom"></span>
+                      عرض القضايا
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="search" class="align-text-bottom"></span>
+
+                      استرجاع القضايا المشابهة
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="archive" class="align-text-bottom"></span>
+                      أرشيف القضايا
+                    </a></li>
+              </div>
+            </li>
+
+            <li class="mb-1 nav-item ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#appointment-collapse" aria-expanded="false">
+                <span data-feather="clock" class="align-text-bottom"></span>
+                المواعيد
+
+              </button>
+
+              <div class="collapse" id="appointment-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+
+                      <span data-feather="plus-circle" class="align-text-bottom"></span>
+                      إضافة موعد جديد
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="watch" class="align-text-bottom"></span>
+                      عرض المواعيد
+                    </a></li>
+
+              </div>
+            </li>
+
+
+            <li class="mb-1 nav-item ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#task-collapse" aria-expanded="false">
+                <span data-feather="pen-tool" class="align-text-bottom"></span>
+                المهام
+
+              </button>
+
+              <div class="collapse" id="task-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+
+                      <span data-feather="plus-circle" class="align-text-bottom"></span>
+                      إضافة مهمة جديدة
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="pen-tool" class="align-text-bottom"></span>
+                      عرض المهام
+                    </a></li>
+
+              </div>
+            </li>
+
+            <li class="mb-1 nav-item ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#customers-collapse" aria-expanded="false">
+                <span data-feather="users" class="align-text-bottom"></span>
+                العملاء
+
+              </button>
+
+              <div class="collapse" id="customers-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li><a href="../html/add_client.html" class="nav-link d-inline-flex  collapse-items">
+
+                      <span data-feather="user-plus" class="align-text-bottom"></span>
+                      إضافة عميل جديد
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="user-check" class="align-text-bottom"></span>
+                      عرض العملاء
+                    </a></li>
+
+              </div>
+            </li>
+
+            <li class="mb-1 nav-item active">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#team-collapse" aria-expanded="false">
+                <span data-feather="user" class="align-text-bottom"></span>
+                أفراد المكتب
+              </button>
+
+              <div class="collapse" id="team-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li><a href="../html/add_member.html" class="nav-link d-inline-flex  collapse-items">
+
+                      <span data-feather="user-plus" class="align-text-bottom"></span>
+                      إضافة فرد جديد
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="user-check" class="align-text-bottom"></span>
+                      عرض الأفراد
+                    </a></li>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 col-lg-10 col-sm-12">
+        <form id="register-form" method="post">
+          <h1>إضافة فرد جديد</h1>
+
+
+          <div class="container">
+
+            <div class="row ">
+
+              <div class="col-3">
+                <label for="first_name"><b>الاسم الأول</b></label>
+                <input type="text" id="first_name" placeholder=" أدخل الاسم الأول" name="first_name" required>
+
+              </div>
+              <div class="col-3">
+                <label for="last_name"><b>الاسم الأخير</b></label>
+                <input type="text" id="last_name" placeholder="أدخل الاسم الأخير" name="last_name" required>
+
+              </div>
+              <div class="col-3">
+                <label for="father_name"><b>اسم الأب</b></label>
+                <input type="text" id="father_name" placeholder="أدخل اسم الأب" name="father_name" required>
+
+              </div>
+              <div class="col-3">
+                <label for="mother_name"><b>اسم الأم</b></label>
+                <input type="text" id="mother_name" placeholder="أدخل اسم الأم" name="mother_name" required>
+
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-4">
+                <label for="phone"><b>رقم الهاتف</b></label>
+                <input type="tel" id="phone" placeholder="أدخل رقم الهاتف" name="phone" required>
+              </div>
+              <div class="col-8">
+                <label for="address"><b>العنوان</b></label>
+                <input type="text" id="address" placeholder="أدخل العنوان" name="address" required>
+              </div>
+            </div>
+            <div class="row ">
+
+              <div class="col-12">
+                <label for="email"><b>البريد الإلكتروني</b></label>
+                <input type="text" id="email" placeholder="أدخل البريد الإلكتروني" name="email">
+
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-6">
+                <label for="password"><b>كلمة المرور</b></label>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور" name="password" required>
+              </div>
+              <div class="col-6">
+                <label for="confirm_password"><b>تأكيد كلمة المرور</b></label>
+                <input type="password" id="confirm_password" placeholder="أكّد كلمة المرور" name="confirm_password"
+                  required>
+              </div>
+            </div>
+
+            <div class="row"  >
+              <div class="form-check col-6" style="width: fit-content;">
+                <input class="form-check-input" type="radio" name="rule" id="seretaria" value="secretaria">
+                <label class="form-check-label" for="seretaria">
+                  <b>سكرتاريا</b>
+                </label>
+
+              </div>
+              <div class="form-check col-6 " style="width: fit-content;">
+                <input class="form-check-input" type="radio" name="rule" id="lawyer" value="lawyer">
+                <label class="form-check-label" for="lawyer">
+                 <b>محامي</b> 
+                </label>
+
+              </div>
+              
+            </div>
+            <button type="submit" id="add_btn">إضافة</button>
+            
+          </div>
+
+
+          <div id="error" class="error">
+
+          </div>
+        </form>
+
+      </main>
+    </div>
+  </div>
+
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+
+  <script src="../js/add_member.js"></script>
+
+  </script>
+
+
+
+</body>
+
+</html>

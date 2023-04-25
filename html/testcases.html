@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>صفحة إضافة المدعين</title>
+    <style>
+        /* تنسيق الصفحة */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        /* تنسيق حقول الإدخال */
+        input[type="text"] {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 300px;
+        }
+
+        /* تنسيق زر الإضافة والحذف */
+        .add-btn,
+        .delete-btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* تنسيق قائمة الاقتراحات */
+        .suggestions {
+            display: none;
+            margin-top: -5px;
+            padding: 0;
+            list-style-type: none;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        /* تنسيق عنصر قائمة الاقتراحات */
+        .suggestions li {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* تنسيق عنصر قائمة الاقتراحات عند التحويط عليه */
+        .suggestions li:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>إضافة مدعين جدد</h1>
+    <form id="plaintiffs-form">
+        <div id="plaintiffs-container">
+            <label for="plaintiff-0">اسم المدعي الأول:</label>
+            <input type="text" id="plaintiff-0" name="plaintiffs[]" />
+            <ul class="suggestions" id="suggestions-0"></ul>
+        </div>
+        <button type="button" class="add-btn" onclick="addPlaintiffField()">إضافة</button>
+
+        <button type="submit">حفظ</button>
+    </form>
+
+    <script>
+        let plaintiffCounter = 1;
+        let enemyCounter = 1;
+
+        // إضافة حقل جديد لاسم المدعي
+        function addPlaintiffField() {
+            const plaintiffsContainer = document.getElementById('plaintiffs-container');
+            const newPlaintiffField = document.createElement('div');
+            newPlaintiffField.innerHTML = `
+        <label for="plaintiff-${plaintiffCounter}">اسم المدعي ال${plaintiffCounter + 1}:</label>
+        <input type="text" id="plaintiff-${plaintiffCounter}" name="plaintiffs[]" />
+        <ul class="suggestions" id="suggestions-${plaintiffCounter}"></ul>
+        <button type="button" class="delete-btn" onclick="deletePlaintiffField(${plaintiffCounter})">حذف</button>
+     
+        `
+            plaintiffsContainer.appendChild(newPlaintiffField);
+            plaintiffCounter++;
+        }// حذف حقل المدعي
+        function deletePlaintiffField(plaintiffId) {
+            const plaintiffsContainer = document.getElementById('plaintiffs-container');
+            const plaintiffFieldToRemove = document.getElementById(`plaintiff-${plaintiffId}`).parentNode;
+            plaintiffsContainer.removeChild(plaintiffFieldToRemove);
+            plaintiffCounter--;
+        }
+
+
+
+
+
+
+        // إضافة حقل جديد لاسم  المدعي عليه
+        function addEnemyField() {
+            const plaintiffsContainer = document.getElementById('plaintiffs-container');
+            const newPlaintiffField = document.createElement('div');
+            newPlaintiffField.innerHTML = `
+        <label for="plaintiff-${plaintiffCounter}">اسم المدعي ال${plaintiffCounter + 1}:</label>
+        <input type="text" id="plaintiff-${plaintiffCounter}" name="plaintiffs[]" />
+        <ul class="suggestions" id="suggestions-${plaintiffCounter}"></ul>
+        <button type="button" class="delete-btn" onclick="deletePlaintiffField(${plaintiffCounter})">حذف</button>
+     
+        `
+            plaintiffsContainer.appendChild(newPlaintiffField);
+            plaintiffCounter++;
+        }// حذف حقل المدعي
+        function deletePlaintiffField(plaintiffId) {
+            const plaintiffsContainer = document.getElementById('plaintiffs-container');
+            const plaintiffFieldToRemove = document.getElementById(`plaintiff-${plaintiffId}`).parentNode;
+            plaintiffsContainer.removeChild(plaintiffFieldToRemove);
+            plaintiffCounter--;
+        }
+
+
+
+
+
+
+
+
+        // عرض قائمة الاقتراحات لاسم المدعي
+        function showSuggestions(inputId) {
+            const input = document.getElementById(inputId);
+            const suggestionsList = document.getElementById(`suggestions-${inputId.split('-')[1]}`);
+            const suggestions = ['قائمة الاقتراحات 1', 'قائمة الاقتراحات 2', 'قائمة الاقتراحات 3']; // قائمة الاقتراحات يمكن استبدالها ببيانات حقيقية
+
+            suggestionsList.innerHTML = '';
+            if (input.value.length > 0) {
+                for (let i = 0; i < suggestions.length; i++) {
+                    const suggestion = suggestions[i];
+                    if (suggestion.toLowerCase().startsWith(input.value.toLowerCase())) {
+                        const suggestionElement = document.createElement('li');
+                        suggestionElement.textContent = suggestion;
+                        suggestionElement.addEventListener('click', function () {
+                            input.value = suggestion;
+                            suggestionsList.innerHTML = '';
+                        });
+                        suggestionsList.appendChild(suggestionElement);
+                    }
+                }
+                suggestionsList.style.display = 'block';
+            } else {
+                suggestionsList.style.display = 'none';
+            }
+        }
+
+        // إخفاء قائمة الاقتراحات عند الخروج من حقل اسم المدعي
+        function hideSuggestions(inputId) {
+            const suggestionsList = document.getElementById(`suggestions-${inputId.split('-')[1]}`);
+            suggestionsList.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>

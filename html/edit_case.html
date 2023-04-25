@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Lilas">
+  <meta name="generator" content="Lilas">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+  <title>تعديل قضية </title>
+
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <link href="../css/navs.css" rel="stylesheet">
+  <link href="../css/add_account.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+  <header class="navbar sticky-top sticky-top flex-md-nowrap p-0 shadow" style="background-color:  rgb(7, 48, 78);">
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
+      <div class="imgcontainer">
+
+        <img src="../Img/Logo.jpg" alt="Avatar" class="avatar">
+      </div>
+    </a>
+
+    <div class="navbar-nav col-md-1 col-lg-1">
+      <div class="nav-item text-nowrap ">
+        <p class=" px-3 m-2" id="time">time</p>
+      </div>
+    </div>
+    <div class="navbar-nav col-md-8 col-lg-9" style=" text-align:left;">
+      <div class="nav-item text-nowrap ">
+        <a class="nav-link  px-3" href="#">تسجيل الخروج</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+
+
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 col-sm-12 d-md-block  sidebar collapse">
+        <div class="position-sticky pt-3  sidebar-sticky">
+          <ul class="nav flex-column ">
+            <li class="mb-1 nav-item">
+              <a class="nav-link " aria-current="page" href="../html/dashboard.html">
+                <span data-feather="home" class="align-text-bottom"></span>
+                لوحة القيادة
+              </a>
+            </li>
+            <li class="mb-1 nav-item ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#cases-collapse" aria-expanded="false">
+                <span data-feather="file" class="align-text-bottom"></span>
+                القضايا
+
+              </button>
+
+              <div class="collapse collapse-items" id="cases-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li> <a href="../html/add_case.html" class="nav-link d-inline-flex collapse-items">
+                      <span data-feather="file-plus" class="align-text-bottom"></span>
+
+                      إضافة قضية جديدة
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="file-text" class="align-text-bottom"></span>
+                      عرض القضايا
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="search" class="align-text-bottom"></span>
+
+                      استرجاع القضايا المشابهة
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="archive" class="align-text-bottom"></span>
+                      أرشيف القضايا
+                    </a></li>
+              </div>
+            </li>
+
+            <li class="mb-1 nav-item ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#appointment-collapse" aria-expanded="false">
+                <span data-feather="clock" class="align-text-bottom"></span>
+                المواعيد
+
+              </button>
+
+              <div class="collapse" id="appointment-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+
+                      <span data-feather="plus-circle" class="align-text-bottom"></span>
+                      إضافة موعد جديد
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="watch" class="align-text-bottom"></span>
+                      عرض المواعيد
+                    </a></li>
+
+              </div>
+            </li>
+
+
+            <li class="mb-1 nav-item ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#task-collapse" aria-expanded="false">
+                <span data-feather="pen-tool" class="align-text-bottom"></span>
+                المهام
+
+              </button>
+
+              <div class="collapse" id="task-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+
+                      <span data-feather="plus-circle" class="align-text-bottom"></span>
+                      إضافة مهمة جديدة
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="pen-tool" class="align-text-bottom"></span>
+                      عرض المهام
+                    </a></li>
+
+              </div>
+            </li>
+
+            <li class="mb-1 nav-item ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#customers-collapse" aria-expanded="false">
+                <span data-feather="users" class="align-text-bottom"></span>
+                العملاء
+
+              </button>
+
+              <div class="collapse" id="customers-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li><a href="../html/add_client.html" class="nav-link d-inline-flex  collapse-items">
+
+                      <span data-feather="user-plus" class="align-text-bottom"></span>
+                      إضافة عميل جديد
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="user-check" class="align-text-bottom"></span>
+                      عرض العملاء
+                    </a></li>
+
+              </div>
+            </li>
+
+            <li class="mb-1 nav-item active">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-bs-toggle="collapse" data-bs-target="#team-collapse" aria-expanded="false">
+                <span data-feather="user" class="align-text-bottom"></span>
+                أفراد المكتب
+              </button>
+
+              <div class="collapse" id="team-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                  <li><a href="../html/add_member.html" class="nav-link d-inline-flex  collapse-items">
+
+                      <span data-feather="user-plus" class="align-text-bottom"></span>
+                      إضافة فرد جديد
+
+                    </a></li>
+                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="user-check" class="align-text-bottom"></span>
+                      عرض الأفراد
+                    </a></li>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 col-lg-10 col-sm-12">
+        <form id="register-form" method="post">
+          <h1>تعديل القضية </h1>
+          <div class="container">
+
+
+            <div class="container">
+              <div class="row ">
+                <div class="col-4">
+                  <label for="case_tiltle"><b>موضوع الدعوى</b></label>
+                  <input type="text" id="case_tiltle" placeholder="أدخل موضوع الدعوى" name="case_tiltle" required>
+                </div>
+                <div class="form-group col-4">
+                  <label for="court"><b>المحكمة</b></label>
+                  <select id="court">
+                    <span class="placeholder col-3 placeholder-lg bg-primary">sss</span>
+                    <option disabled selected>اختر المحكمة</option>
+                    <option>Choose2...</option>
+                    <option>...</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="case_room"><b>الغرفة</b></label>
+                  <input type="text" id="case_room" placeholder="أدخل اسم الغرفة" name="case_room" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="container frame ">
+              <div  id="base_number_container">
+                <div class="row">
+                  <div class="col-6">
+
+                    <label for="base-number-0"><b>رقم الأساس</b></label>
+                    <input type="number" class="base-number" id="base-number-0" placeholder="أدخل رقم الأساس"
+                      name="base-number[]">
+
+                  </div>
+                  <div class="col-6"><label for="yearSelect-0"><b>العام</b></label>
+                    <select id="yearSelect-0" name="year[]">
+                    </select>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <hr>
+              <button id="pls-base-number" onclick="addBaseNumber()" type="button">
+                <span data-feather="plus" class="align-text-bottom "></span>
+
+              </button>
+            </div>
+            <div class="container  ">
+              <div class="row">
+
+                <div class=" col-6">
+                  <b
+                    style="color: rgb(7, 48, 78); font-size: larger; font-weight: 500; justify-content: center; display: flex;">
+                    الجهة
+                    المدعية</b>
+                  <br>
+                  <div class="row ">
+                    <div class=" col-6 frame">
+                      <div class="clientvs1" id="clientvs1">
+
+                        <div id="clientPlaintiff0">
+                          <label for="client_name-0"><b>اسم المدعي</b></label>
+                          <input type="text" class="client_name" id="client_name-0" placeholder="أدخل اسم المدعي"
+                            name="client_names[]" oninput="showSuggestions(0, 'client')"
+                            onfocus="showSuggestions(0, 'client')" onblur="hideSuggestions(0, 'client')" required>
+                          <ul class="suggestions" id="suggestions-client-0"></ul>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row ">
+
+                        <div class="col-6">
+                          <button id="client-pls-vs1" onclick="addClientPlaintiffField()" type="button">
+                            <span data-feather="plus" class="align-text-bottom "></span>
+
+                          </button>
+                        </div>
+                        <div class="col-6">
+
+                          <button id="client-delete-vs1" onclick="deleteClientPlaintiffField()" type="button">
+                            <span data-feather="minus" class="align-text-bottom "></span>
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class=" col-6 frame">
+                      <div class="lawyervs1" id="lawyervs1">
+
+                        <div id="lawyerPlaintiff0">
+
+                          <label for="lawyer_name-0"><b>اسم الوكيل</b></label>
+                          <input type="text" id="lawyer_name-0" placeholder="أدخل اسم الوكيل" name="lawyer_name[]">
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row ">
+
+                        <div class="col-6">
+                          <button id="lawyer-pls-vs1" onclick="addLawyerPlaintiffField()" type="button">
+                            <span data-feather="plus" class="align-text-bottom "></span>
+
+                          </button>
+                        </div>
+                        <div class="col-6">
+
+                          <button id="client-delete-vs1" onclick="deleteLawyerPlaintiffField()">
+                            <span data-feather="minus" class="align-text-bottom "></span>
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+
+
+
+
+
+
+                  </div>
+
+                </div>
+
+                <div class=" col-6">
+                  <b
+                    style="color: rgb(7, 48, 78); font-size: larger; font-weight: 500; justify-content: center; display: flex;">
+                    الجهة المدعى عليها</b>
+                  <br>
+                  <div class="row ">
+                    <div class=" col-6 frame">
+                      <div class="clientvs2" id="clientvs2">
+
+                        <div id="clientEnemy0">
+                          <label for="enemy_name-0"><b>اسم المدعي عليه</b></label>
+                          <input type="text" class="clientEnemy_name" id="enemy_name-0" placeholder="أدخل اسم المدعي"
+                            name="clientEnemy_names[]" oninput="showSuggestions(0, 'enemy')"
+                            onfocus="showSuggestions(0, 'enemy')" onblur="hideSuggestions(0, 'enemy')" required>
+                          <ul class="suggestions" id="suggestions-enemy-0"></ul>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row ">
+
+                        <div class="col-6">
+                          <button id="client-pls-vs2" onclick="addClientEnemyField()" type="button">
+                            <span data-feather="plus" class="align-text-bottom "></span>
+
+                          </button>
+                        </div>
+                        <div class="col-6">
+
+                          <button id="client-delete-vs2" onclick="deleteClientEnemyField()" type="button">
+                            <span data-feather="minus" class="align-text-bottom "></span>
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class=" col-6 frame">
+                      <div class="lawyervs2" id="lawyervs2">
+
+                        <div id="lawyerEnemy0">
+
+                          <label for="lawyerEnemy_name-0"><b>اسم الوكيل</b></label>
+                          <input type="text" id="lawyerEnemy_name-0" placeholder="أدخل اسم الوكيل"
+                            name="lawyerEnemy_name[]">
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row ">
+
+                        <div class="col-6">
+                          <button id="lawyer-pls-vs2" onclick="addLawyerEnemyField()" type="button">
+                            <span data-feather="plus" class="align-text-bottom "></span>
+
+                          </button>
+                        </div>
+                        <div class="col-6">
+
+                          <button id="client-delete-vs2" onclick="deleteLawyerEnemyField()" type="button">
+                            <span data-feather="minus" class="align-text-bottom "></span>
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <button type="submit" id="add_btn">إضافة</button>
+          </div>
+          <div id="error" class="error">
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+
+
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+
+
+  <script src="../js/edit_case.js"></script>
+
+  </script>
+
+
+
+</body>
+
+</html>

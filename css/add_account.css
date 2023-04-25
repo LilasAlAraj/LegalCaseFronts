@@ -1,0 +1,255 @@
+body {
+    background-color: #f2f2f2;
+    font-size: .875rem;
+    display: inline;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(87, 126, 155);
+}
+
+#case-details,
+form {
+    border: 2px solid rgb(7, 48, 78);
+    background-color: #fff;
+    width: auto;
+    margin: auto;
+
+    padding: auto;
+}
+
+label {
+    color: rgb(7, 48, 78);
+}
+
+select,
+input:not(input[type="radio"]) {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    color: #000;
+    border: 1px solid #ccc;
+    text-align: right;
+}
+
+#add_btn {
+    background-color: rgb(87, 126, 155);
+
+    color: #fff;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.container {
+    padding: 16px;
+}
+
+.forget_password {
+    display: flex;
+    justify-content: center;
+    text-decoration-line: none;
+    font-weight: bolder;
+    color: rgb(87, 126, 155);
+}
+
+.forget_password:hover {
+    color: rgb(7, 48, 78);
+
+
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+
+    .cancelbtn,
+    .signupbtn {
+        width: 100%;
+    }
+}
+
+/* ستايل لزر العرض */
+#show-password-btn {
+    margin-left: 10px;
+    background-color: transparent;
+    color: #666;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+}
+
+/* ستايل لإظهار كلمة المرور */
+#password[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+
+    text-align: right;
+}
+
+
+/* Styles for error messages */
+.error {
+    color: #f00;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+
+/**suggestion of names************/
+
+.suggestions {
+    list-style-type: none;
+    margin-right: 2%;
+    position: fixed;
+    background-color: #666;
+    color: white;
+    z-index: 111;
+}
+
+.suggestions li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.suggestions li:hover {
+    background-color: #7a7a7a9f;
+}
+
+#client-pls-vs1,
+#lawyer-pls-vs1,
+#client-pls-vs2,
+#lawyer-pls-vs2,
+#pls-vs2,
+#pls-base-number {
+    background-color: rgb(87, 126, 155);
+
+    color: #fff;
+    padding: 1% 1%;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+
+}
+
+
+.delete-base-number-btn,
+#client-delete-vs1,
+#lawyer-delete-vs1,
+#client-delete-vs2,
+#lawyer-delete-vs2 {
+    background-color: rgb(87, 126, 155);
+
+    color: #fff;
+    padding: 1% 1%;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    margin: 1%;
+
+}
+
+/******إطار     ******/
+.frame {
+    border: 1px solid #666666a6;
+    border-radius: 15px;
+    padding: 2%;
+}
+
+#base_number_container {
+    margin: 1em;
+    width: auto;
+}
+
+/******logo of naqaba*****/
+
+
+.logocontainer {
+    text-align: center;
+    position: relative;
+}
+
+img.naqaba-logo {
+    width: 10%;
+}
+
+thead {
+    text-align: center;
+}
+
+
+.process-case-info-btn,
+.process-case-info-btn:hover {
+    color: white;
+    width: max-content;
+
+
+}
+
+.accordion-button {
+    color: rgb(87, 126, 155);
+
+    font-weight: bolder;
+    font-size: large;
+}
+
+
+
+
+.accordion-button:not(.collapsed) {
+    color: rgb(240, 240, 240);
+    background-color: rgb(87, 126, 155);
+    font-weight: bolder;
+    font-size: large;
+}
+
+
+.accordion-button::after {
+    margin-right: 1.5%;
+
+}
+
+
+
+/****تنسيق جدول القضايا المضافة مؤخراً***/
+.clickable-row:hover {
+    background-color: rgba(87, 126, 155, 0.2);
+    ;
+}
+
+tr.clickable-row:hover th,
+tr.clickable-row:hover td {
+    color: white
+}
+
+#add-session-button,
+#add-decision-button,
+#add-attachment-button, 
+#edit_additional_details-button{
+    background-color: rgb(87, 126, 155);
+
+}

@@ -1,0 +1,154 @@
+.feather {
+  width: 16px;
+  height: 16px;
+}
+
+/*
+   * Sidebar
+   */
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  /* Behind the navbar */
+  padding: 48px 0 0;
+  /* Height of navbar */
+  box-shadow: inset 2px 0 0 rgba(0, 0, 0, .1);
+  background-color: white;
+
+}
+
+
+
+.sidebar-sticky {
+  height: calc(100vh - 48px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+
+}
+
+.sidebar .nav-item {
+  font-weight: 500;
+  color: rgb(87, 126, 155);
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgb(87, 126, 155);
+
+
+}
+
+.sidebar .nav-item:hover {
+
+  background-color: rgb(87, 126, 155);
+  color: white;
+
+}
+
+
+
+.collapse-items {
+  color: black;
+
+}
+
+.collapse-items:hover {
+  color: white;
+}
+
+.navbar button span {
+  color: rgb(87, 126, 155);
+
+}
+
+.navbar .nav-link {
+  color: rgb(87, 126, 155);
+}
+
+
+.navbar .nav-link::selection {
+  color: white;
+
+}
+
+.nav-link .feather {
+  margin-left: 4px;
+  color: inherit
+}
+
+.nav-link.active {
+  color: #4c4d4e;
+}
+
+.nav-link:hover .feather,
+.nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+}
+
+/*
+   * Navbar
+   */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: rgba(0, 0, 0, .25);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  left: 1rem;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+
+.imgcontainer {
+  text-align: center;
+  position: relative;
+}
+
+
+img.avatar {
+  width: 20%;
+  border-radius: 50%;
+}
+
+ul {
+  padding-right: 0;
+
+}
+
+main {
+  translate: -20%;
+}
+
+
+
+/********ضبط الوقت**********/
+#time {
+  width: fit-content;
+  color: white;
+}
+

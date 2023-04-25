@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+   <!-- html2pdf CDN-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js">
+   </script>
+
+  
+</head>
+
+<body>
+   <div class="container">
+      <button id="button">Generate PDF</button>
+      <div>
+         hyyyyyyyyy
+      </div>
+      <div class="card" id="oo">
+         <h2>Welcome to GeeksforGeeks</h2>
+         <ul style="font-size: 1000; font-weight: bolder;">
+            <li>
+               <h4 style="font-size:25px; font-weight: bolder;">
+                  We are going to generate a pdf
+                  from the area inside the box
+               </h4>
+            </li>
+            <li>
+               <h4>
+                  This is an example of generating
+                  pdf from HTML during runtime
+               </h4>
+            </li>
+         </ul>
+      </div>
+   </div>
+
+   <script>
+      var button = document.getElementById("button");
+      var makepdf = '<h1>'+ new Date().getDate+'</h1>'+
+      '<ul style="font-size: 1000; font-weight: bolder; padding:50px">' +
+         '<li\>' +
+         '					<h4 >' +
+         '						We are going to generate a pdf' +
+         '					from the area inside the box'+
+'					</h4 >'+
+'			</li >'+
+'         <li>'+
+ '           <h4>' +
+   '             This is an example of generating' +
+   '           pdf from HTML during runtime' +
+   '        </h4>' +
+   '     </li>' +
+	'		</ul > ';
+      console.log(makepdf)
+
+      button.addEventListener("click", function () {
+         html2pdf().from(makepdf).save();
+      });
+   </script>
+</body>
+
+</html>

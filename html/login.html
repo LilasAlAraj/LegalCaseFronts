@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="../css/login.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+</head>
+
+<body>
+  <form id="login-form" method="post">
+    <h1>تسجيل الدخول</h1>
+
+    <div class="imgcontainer">
+      <img src="../Img/Logo.jpg" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="phone"><b>رقم الهاتف</b></label>
+      <input type="tel" id="phone" placeholder="أدخل رقم الهاتف" name="phone" required>
+      <br>
+      <label for="password"><b>كلمة المرور</b></label>
+      <input type="password" id="password" placeholder="أدخل كلمة المرور" name="password" required>
+      <br>
+      <button type="button" id="show-password-btn">إظهار كلمة المرور</button>
+      <button type="submit">تسجيل الدخول</button>
+      <label style="      font-weight: bold;color: rgb(7, 48, 78); ">
+        <input id="remember_me" type="checkbox" name="remember" > تذكرني
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <a href="#" class="forget_password">هل نسيت كلمة المرور؟</a>
+    </div>
+
+    <div id="error" class="error">
+
+    </div>
+  </form>
+  <!-- Error messages -->
+
+
+  <script src="../js/login.js"></script>
+</body>
+
+</html>

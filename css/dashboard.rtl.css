@@ -1,0 +1,51 @@
+body {
+ /* background-color: #f2f2f2;*/
+
+  font-size: .875rem;
+  display: inline;
+}
+/*******تنسيق الإحصائيات***********/
+.card div {
+  color: black;
+}
+
+.card-title-img {
+
+  transform: scale(5);
+  color: #4c4d4e;
+}
+
+div.card-header {
+  font-size: 1em;
+  font-weight: 700;
+  color: #fff;
+  background-color: rgb(87, 126, 155);
+  ;
+}
+
+.card-text {
+  font-size: 1em;
+  font-weight: bold;
+  color: #4c4d4e;
+  text-align: center;
+}
+
+div.card-body {
+  height: 8em;
+}
+
+
+/****تنسيق جدول القضايا المضافة مؤخراً***/
+.clickable-row:hover {
+  background-color: rgb(87, 126, 155);
+  ;
+}
+
+tr.clickable-row:hover th,
+tr.clickable-row:hover td{
+  color: white
+}
+
+table{
+  background-color: white;
+}

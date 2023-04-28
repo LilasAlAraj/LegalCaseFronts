@@ -5,12 +5,11 @@ body {
 }
 
 h1 {
-    text-align: center;
     color: rgb(87, 126, 155);
 }
 
-#case-details,
-form {
+#big-frame,
+form:not(#search-options){
     border: 2px solid rgb(7, 48, 78);
     background-color: #fff;
     width: auto;
@@ -246,6 +245,9 @@ tr.clickable-row:hover td {
     color: white
 }
 
+
+
+#add-appointment-button,
 #add-session-button,
 #add-decision-button,
 #add-attachment-button, 
@@ -253,3 +255,6 @@ tr.clickable-row:hover td {
     background-color: rgb(87, 126, 155);
 
 }
+
+
+

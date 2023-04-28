@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Lilas">
+    <meta name="generator" content="Lilas">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <title>عرض المواعيد</title>
+
+
+    <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <link href="../../css/navs.css" rel="stylesheet">
+    <link href="../../css/add_account.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <header class="navbar sticky-top sticky-top flex-md-nowrap p-0 shadow" style="background-color:  rgb(7, 48, 78);">
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
+            <div class="imgcontainer">
+
+                <img src="../../Img/Logo.jpg" alt="Avatar" class="avatar">
+            </div>
+        </a>
+
+        <div class="navbar-nav col-md-1 col-lg-1">
+            <div class="nav-item text-nowrap ">
+                <p class=" px-3 m-2" id="time">time</p>
+            </div>
+        </div>
+        <div class="navbar-nav col-md-8 col-lg-9" style=" text-align:left;">
+            <div class="nav-item text-nowrap ">
+                <a class="nav-link  px-3" href="#">تسجيل الخروج</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+
+
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 col-sm-12 d-md-block  sidebar collapse">
+                <div class="position-sticky pt-3  sidebar-sticky">
+                    <ul class="nav flex-column ">
+                        <li class="mb-1 nav-item">
+                            <a class="nav-link " aria-current="page" href="../../html/dashboard.html">
+                                <span data-feather="home" class="align-text-bottom"></span>
+                                لوحة القيادة
+                            </a>
+                        </li>
+                        <li class="mb-1 nav-item ">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#cases-collapse" aria-expanded="false">
+                                <span data-feather="file" class="align-text-bottom"></span>
+                                القضايا
+
+                            </button>
+
+                            <div class="collapse collapse-items" id="cases-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                                    <li> <a href="../../html/cases/add.html"
+                                            class="nav-link d-inline-flex collapse-items">
+                                            <span data-feather="file-plus" class="align-text-bottom"></span>
+
+                                            إضافة قضية جديدة
+
+                                        </a></li>
+                                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="file-text" class="align-text-bottom"></span>
+                                            عرض القضايا
+                                        </a></li>
+                                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="search" class="align-text-bottom"></span>
+
+                                            استرجاع القضايا المشابهة
+
+                                        </a></li>
+                                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="archive" class="align-text-bottom"></span>
+                                            أرشيف القضايا
+                                        </a></li>
+                            </div>
+                        </li>
+
+                        <li class="mb-1 nav-item  ">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#appointment-collapse" aria-expanded="false">
+                                <span data-feather="clock" class="align-text-bottom"></span>
+                                المواعيد
+
+                            </button>
+
+                            <div class="collapse" id="appointment-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                                    <li><a href="../../html/appointments/add.html"
+                                            class="nav-link d-inline-flex  collapse-items">
+
+                                            <span data-feather="plus-circle" class="align-text-bottom"></span>
+                                            إضافة موعد جديد
+
+                                        </a></li>
+                                    <li><a href="../appointments/view.html"
+                                            class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="watch" class="align-text-bottom"></span>
+                                            عرض المواعيد
+                                        </a></li>
+
+                            </div>
+                        </li>
+
+
+                        <li class="mb-1 nav-item ">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#task-collapse" aria-expanded="false">
+                                <span data-feather="pen-tool" class="align-text-bottom"></span>
+                                المهام
+
+                            </button>
+
+                            <div class="collapse" id="task-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+
+                                            <span data-feather="plus-circle" class="align-text-bottom"></span>
+                                            إضافة مهمة جديدة
+
+                                        </a></li>
+                                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="pen-tool" class="align-text-bottom"></span>
+                                            عرض المهام
+                                        </a></li>
+
+                            </div>
+                        </li>
+
+                        <li class="mb-1 nav-item ">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#customers-collapse" aria-expanded="false">
+                                <span data-feather="users" class="align-text-bottom"></span>
+                                العملاء
+
+                            </button>
+
+                            <div class="collapse" id="customers-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                                    <li><a href="../../html/users/add_client.html"
+                                            class="nav-link d-inline-flex  collapse-items">
+
+                                            <span data-feather="user-plus" class="align-text-bottom"></span>
+                                            إضافة عميل جديد
+
+                                        </a></li>
+                                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="user-check" class="align-text-bottom"></span>
+                                            عرض العملاء
+                                        </a></li>
+
+                            </div>
+                        </li>
+
+                        <li class="mb-1 nav-item ">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#team-collapse" aria-expanded="false">
+                                <span data-feather="user" class="align-text-bottom"></span>
+                                أفراد المكتب
+                            </button>
+
+                            <div class="collapse" id="team-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                                    <li><a href="../../html/users/add_member.html"
+                                            class="nav-link d-inline-flex  collapse-items">
+
+                                            <span data-feather="user-plus" class="align-text-bottom"></span>
+                                            إضافة فرد جديد
+
+                                        </a></li>
+                                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="user-check" class="align-text-bottom"></span>
+                                            عرض الأفراد
+                                        </a></li>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 col-lg-10 col-sm-12">
+                <div id="big-frame">
+                    <div class="container">
+
+                        <div class="row ">
+                            <div class="col-9">
+                                <h1>عرض المواعيد</h1>
+                            </div>
+                            <div class="col-2" style="margin-top: 1%; margin-right: 6%;">
+
+                                <button type="button" id="add-appointment-button" class="process-case-info-btn btn"
+                                    onclick="add_aappointment()">
+                                    <span data-feather="plus-circle" class="align-text-bottom"></span>
+                                    إضافة موعد جديد
+
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <form id="search-options" action="get">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="from_date"><b>من تاريخ</b></label>
+                                    <input type="date" id="from_date" name="from_date" required>
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="to_date"><b>إلى تاريخ</b></label>
+                                    <input type="date" id="to_date" name="to_date" required>
+                                </div>
+
+                            </div>
+                            <div class="container" style="padding: 0;">
+                                <button type="submit" id="search-button" class="process-case-info-btn btn btn-success"
+                                    onclick="search()">
+                                    <span data-feather="search" class="align-text-bottom"></span>
+                                    ابحث
+
+                                </button>
+                                <button type="reset" id="remove-button" class="process-case-info-btn btn btn-danger">
+                                    <span data-feather="x-circle" class="align-text-bottom"></span>
+                                    امسح
+                                </button>
+
+
+                                <span id="error" class="error">
+                                </span>
+                            </div>
+                            <hr>
+
+
+                        </form>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>التاريخ</th>
+                                    <th>الوقت</th>
+                                    <th>الاسم</th>
+                                    <th>السبب</th>
+                                    <th>action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="table-body"></tbody>
+                        </table>
+                        <nav aria-label="Page navigation example">
+                            <ul id="pagination" class="pagination"></ul>
+                        </nav>
+
+
+
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+
+    <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
+
+
+    <script src="../../js/view_appointments.js"></script>
+
+    </script>
+
+
+
+</body>
+
+</html>

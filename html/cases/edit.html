@@ -9,13 +9,13 @@
   <meta name="generator" content="Lilas">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  <title>إضافة قضية جديدة</title>
+  <title>تعديل قضية </title>
 
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-  <link href="../css/navs.css" rel="stylesheet">
-  <link href="../css/add_account.css" rel="stylesheet">
+  <link href="../../css/navs.css" rel="stylesheet">
+  <link href="../../css/add_account.css" rel="stylesheet">
 
 
 </head>
@@ -30,7 +30,7 @@
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
       <div class="imgcontainer">
 
-        <img src="../Img/Logo.jpg" alt="Avatar" class="avatar">
+        <img src="../../Img/Logo.jpg" alt="Avatar" class="avatar">
       </div>
     </a>
 
@@ -54,7 +54,7 @@
         <div class="position-sticky pt-3  sidebar-sticky">
           <ul class="nav flex-column ">
             <li class="mb-1 nav-item">
-              <a class="nav-link " aria-current="page" href="../html/dashboard.html">
+              <a class="nav-link " aria-current="page" href="../../html/dashboard.html">
                 <span data-feather="home" class="align-text-bottom"></span>
                 لوحة القيادة
               </a>
@@ -69,7 +69,7 @@
 
               <div class="collapse collapse-items" id="cases-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li> <a href="../html/add_case.html" class="nav-link d-inline-flex collapse-items">
+                  <li> <a href="../../html/cases/add.html" class="nav-link d-inline-flex collapse-items">
                       <span data-feather="file-plus" class="align-text-bottom"></span>
 
                       إضافة قضية جديدة
@@ -102,13 +102,13 @@
 
               <div class="collapse" id="appointment-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                  <li><a href="../appointments/add.html" class="nav-link d-inline-flex  collapse-items">
 
                       <span data-feather="plus-circle" class="align-text-bottom"></span>
                       إضافة موعد جديد
 
                     </a></li>
-                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                  <li><a href="../appointments/view.html" class="nav-link d-inline-flex  collapse-items">
                       <span data-feather="watch" class="align-text-bottom"></span>
                       عرض المواعيد
                     </a></li>
@@ -151,7 +151,7 @@
 
               <div class="collapse" id="customers-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li><a href="../html/add_client.html" class="nav-link d-inline-flex  collapse-items">
+                  <li><a href="../../html/users/add_client.html" class="nav-link d-inline-flex  collapse-items">
 
                       <span data-feather="user-plus" class="align-text-bottom"></span>
                       إضافة عميل جديد
@@ -174,7 +174,7 @@
 
               <div class="collapse" id="team-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li><a href="../html/add_member.html" class="nav-link d-inline-flex  collapse-items">
+                  <li><a href="../../html/users/add_member.html" class="nav-link d-inline-flex  collapse-items">
 
                       <span data-feather="user-plus" class="align-text-bottom"></span>
                       إضافة فرد جديد
@@ -193,10 +193,17 @@
 
       <main class="col-md-9 col-lg-10 col-sm-12">
         <form id="register-form" method="post">
-          <h1>إضافة قضية جديدة</h1>
+        
           <div class="container">
 
 
+            <div class="row ">
+              <div class="col-12">
+                <h1>تعديل قضية </h1>
+              </div>
+
+            </div>
+            <hr>
             <div class="container">
               <div class="row ">
                 <div class="col-4">
@@ -408,14 +415,14 @@
 
 
 
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
     crossorigin="anonymous"></script>
 
 
-  <script src="../js/add_case.js"></script>
+  <script src="../../js/edit_case.js"></script>
 
   </script>
 

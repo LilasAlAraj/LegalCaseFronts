@@ -9,7 +9,7 @@
   <meta name="generator" content="Lilas">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  <title>إضافة عضو جديد</title>
+  <title>إضافة موعد جديد</title>
 
   <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -70,7 +70,7 @@
               <div class="collapse collapse-items" id="cases-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
                   <li> <a href="../../html/cases/add.html" class="nav-link d-inline-flex collapse-items">
-                    <span data-feather="file-plus" class="align-text-bottom"></span>
+                      <span data-feather="file-plus" class="align-text-bottom"></span>
 
                       إضافة قضية جديدة
 
@@ -92,7 +92,7 @@
               </div>
             </li>
 
-            <li class="mb-1 nav-item ">
+            <li class="mb-1 nav-item  ">
               <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
                 data-bs-toggle="collapse" data-bs-target="#appointment-collapse" aria-expanded="false">
                 <span data-feather="clock" class="align-text-bottom"></span>
@@ -102,7 +102,7 @@
 
               <div class="collapse" id="appointment-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li><a href="../appointments/add.html" class="nav-link d-inline-flex  collapse-items">
+                  <li><a href="../../html/appointments/add.html" class="nav-link d-inline-flex  collapse-items">
 
                       <span data-feather="plus-circle" class="align-text-bottom"></span>
                       إضافة موعد جديد
@@ -157,7 +157,7 @@
                       إضافة عميل جديد
 
                     </a></li>
-                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                  <li><a href="../appointments/view.html" class="nav-link d-inline-flex  collapse-items">
                       <span data-feather="user-check" class="align-text-bottom"></span>
                       عرض العملاء
                     </a></li>
@@ -165,7 +165,7 @@
               </div>
             </li>
 
-            <li class="mb-1 nav-item active">
+            <li class="mb-1 nav-item ">
               <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
                 data-bs-toggle="collapse" data-bs-target="#team-collapse" aria-expanded="false">
                 <span data-feather="user" class="align-text-bottom"></span>
@@ -192,95 +192,53 @@
       </nav>
 
       <main class="col-md-9 col-lg-10 col-sm-12">
-        <form id="register-form" method="post">
-
+        <form id="appointment-form" method="post">
 
           <div class="container">
+
             <div class="row ">
               <div class="col-12">
-                <h1>إضافة فرد جديد</h1>
+                <h1>إضافة موعد جديد</h1>
               </div>
 
             </div>
             <hr>
-            <div class="row ">
+          </div>
 
-              <div class="col-3">
-                <label for="first_name"><b>الاسم الأول</b></label>
-                <input type="text" id="first_name" placeholder=" أدخل الاسم الأول" name="first_name" required>
+          <div class="container">
 
-              </div>
-              <div class="col-3">
-                <label for="last_name"><b>الاسم الأخير</b></label>
-                <input type="text" id="last_name" placeholder="أدخل الاسم الأخير" name="last_name" required>
-
-              </div>
-              <div class="col-3">
-                <label for="father_name"><b>اسم الأب</b></label>
-                <input type="text" id="father_name" placeholder="أدخل اسم الأب" name="father_name" required>
-
-              </div>
-              <div class="col-3">
-                <label for="mother_name"><b>اسم الأم</b></label>
-                <input type="text" id="mother_name" placeholder="أدخل اسم الأم" name="mother_name" required>
-
-              </div>
-            </div>
-            <div class="row ">
-              <div class="col-4">
-                <label for="phone"><b>رقم الهاتف</b></label>
-                <input type="tel" id="phone" placeholder="أدخل رقم الهاتف" name="phone" required>
-              </div>
-              <div class="col-8">
-                <label for="address"><b>العنوان</b></label>
-                <input type="text" id="address" placeholder="أدخل العنوان" name="address" required>
-              </div>
-            </div>
-            <div class="row ">
-
-              <div class="col-12">
-                <label for="email"><b>البريد الإلكتروني</b></label>
-                <input type="text" id="email" placeholder="أدخل البريد الإلكتروني" name="email">
-
-              </div>
-            </div>
             <div class="row ">
               <div class="col-6">
-                <label for="password"><b>كلمة المرور</b></label>
-                <input type="password" id="password" placeholder="أدخل كلمة المرور" name="password" required>
+                <label for="name"><b>اسم الشخص</b></label>
+                <input type="text" id="name" placeholder="أدخل الاسم" name="name" required>
+
               </div>
+
               <div class="col-6">
-                <label for="confirm_password"><b>تأكيد كلمة المرور</b></label>
-                <input type="password" id="confirm_password" placeholder="أكّد كلمة المرور" name="confirm_password"
-                  required>
+                <label for="reason"><b>السبب</b></label>
+                <input type="text" id="reason" placeholder="أدخل السبب" name="reason" required>
               </div>
+
             </div>
 
-            <div class="row"  >
-              <div class="form-check col-6" style="width: fit-content;">
-                <input class="form-check-input" type="radio" name="rule" id="seretaria" value="secretaria">
-                <label class="form-check-label" for="seretaria">
-                  <b>سكرتاريا</b>
-                </label>
 
-              </div>
-              <div class="form-check col-6 " style="width: fit-content;">
-                <input class="form-check-input" type="radio" name="rule" id="lawyer" value="lawyer">
-                <label class="form-check-label" for="lawyer">
-                 <b>محامي</b> 
-                </label>
+            <div class="row ">
 
+              <div class="col-6">
+                <label for="appointment_date"><b>التاريخ</b></label>
+                <input type="date" id="appointment_date" name="appointment_date" required>
               </div>
-              
+              <div class="col-6">
+                <label for="appointment_time"><b>الوقت</b> </label>
+                <input type="time" id="appointment_time" name="appointment_time" required>
+              </div>
             </div>
             <button type="submit" id="add_btn">إضافة</button>
-            
-          </div>
-
-
-          <div id="error" class="error">
 
           </div>
+
+
+          <!--<div id="error" class="error"></div>-->
         </form>
 
       </main>
@@ -297,7 +255,7 @@
     integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
     crossorigin="anonymous"></script>
 
-  <script src="../../js/add_member.js"></script>
+  <script src="../../js/add_appointment.js"></script>
 
   </script>
 

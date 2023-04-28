@@ -75,6 +75,7 @@ function login() {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
           });
+
           $.ajax({
             url: "http://127.0.0.1:8000/login",
             type: "POST",

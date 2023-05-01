@@ -33,7 +33,7 @@ $(document).ready(function () {
             data = response;
 
             // تحديث Pagination
-            updatePagination(response);
+            updatePagination(data);
             showPage(1, data)
 
         },
@@ -95,7 +95,7 @@ function search() {
 
                     updatePagination(searchResults);
 
-                    showPage(1, search)
+                    showPage(1, searchResults)
 
                 }
 
@@ -266,13 +266,15 @@ function showPage(pageNumber, data) {
 
 
         const btn = document.createElement('button');
-        btn.innerHTML = 'امسح'
-        btn.classList.add('btn');
+        btn.innerHTML =  '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
+        btn.classList.add('btn', 'btn-sm');
         btn.classList.add('btn-danger');
         btn.onclick = function () {
-            deleteItem(item.id)
+            deleteCase(item.id)
 
-        }
+        }  
+        btn.setAttribute('title', 'امسح الموعد');
+
         var row = $('<tr>').append(
             $('<td>').text(item.date),
             $('<td>').text(item.time),
@@ -291,7 +293,7 @@ function showPage(pageNumber, data) {
     // تمييز الصفحة الحالية في Pagination
 }
 
-function deleteItem(itemId) {
+function deleteCase(itemId) {
     var confirmation = confirm("هل أنت متأكد من حذف هذا العنصر؟");
     if (confirmation) {
         // احذف الصف من الجدول هنا، ويمكن استخدام المعرف المحدد لهذا الصف

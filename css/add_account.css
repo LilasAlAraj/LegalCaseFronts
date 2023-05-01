@@ -1,4 +1,10 @@
+pre {
+    font-size: .875rem;
+    font-family: var(--bs-font-sans-serif);
+}
+
 body {
+
     background-color: #f2f2f2;
     font-size: .875rem;
     display: inline;
@@ -9,7 +15,7 @@ h1 {
 }
 
 #big-frame,
-form:not(#search-options){
+form:not(.search-options) {
     border: 2px solid rgb(7, 48, 78);
     background-color: #fff;
     width: auto;
@@ -179,10 +185,6 @@ button:hover {
     padding: 2%;
 }
 
-#base_number_container {
-    margin: 1em;
-    width: auto;
-}
 
 /******logo of naqaba*****/
 
@@ -201,13 +203,6 @@ thead {
 }
 
 
-.process-case-info-btn,
-.process-case-info-btn:hover {
-    color: white;
-    width: max-content;
-
-
-}
 
 .accordion-button {
     color: rgb(87, 126, 155);
@@ -245,16 +240,117 @@ tr.clickable-row:hover td {
     color: white
 }
 
-
-
+#edit_state-button,
+#add-cases-button,
 #add-appointment-button,
 #add-session-button,
 #add-decision-button,
-#add-attachment-button, 
-#edit_additional_details-button{
+#add-attachment-button {
     background-color: rgb(87, 126, 155);
 
 }
 
+.operations-btn,
+.operations-btn:hover {
+    color: white;
+    width: max-content;
+}
+
+.dropdown-menu {
+    padding: 0;
+    margin: 0;
+    background-color: rgba(32, 32, 32, 0.384);
+    min-width: max-content;
+    box-shadow: 0 4px 8px 0 rgba(32, 32, 32, 0.384), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.dropdown-menu li button {
+    width: 100%;
+}
+
+/*****حالة القضية في جدول عرض القضايا****/
+.state {
+    color: #fff !important;
+}
+
+.btn-info {
+    color: #fff;
+}
+
+.menu-operations-btn {
+    width: 100%;
+}
 
 
+
+/*************************/
+#reverse-btn {
+    color: rgb(87, 126, 155);
+    background-color: transparent;
+    border: transparent;
+}
+
+/***********************لون ازرار البحث الخاصة بعرض القضايا********/
+.searchBy {
+    color: rgb(87, 126, 155);
+
+}
+
+.searchBy:hover {
+    background-color: rgb(87, 126, 155);
+    color: white;
+}
+
+/*****************color of pagination**************/
+.page-link {
+    color: rgb(87, 126, 155);
+    cursor: pointer;
+}
+
+.active .page-link {
+    color: white;
+    background-color: rgb(87, 126, 155);
+    border-color: transparent;
+}
+
+/********************/
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-75%, -50%);
+    background-color: rgb(87, 126, 155);
+    border: 1px solid #ccc;
+    padding: 50px;
+    padding-top: 20px;
+    z-index: 3;
+}
+
+.content {
+    pointer-events: none;
+    z-index: 2;
+
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(158, 158, 158, 0.5);
+    /* تعيين الخلفية إلى شفافية 50٪ */
+}
+
+
+.popup--open {
+    display: block;
+}
+
+.overlay--active {
+    display: block;
+}

@@ -199,7 +199,7 @@
       </nav>
 
       <main class="col-md-9 col-lg-10 col-sm-12">
-        <form id="register-form" method="post">
+        <form id="edit_case-form" method="post">
 
           <div class="container">
 
@@ -222,7 +222,9 @@
                   <select id="court">
                     <span class="placeholder col-3 placeholder-lg bg-primary">sss</span>
                     <option disabled selected>اختر المحكمة</option>
-                    <option>Choose2...</option>
+                    <option>Choose1...</option>
+                    <option>محكمة الجنح</option>
+                    <option>محكمة الصلح</option>
                     <option>...</option>
                   </select>
                 </div>
@@ -235,33 +237,28 @@
 
             <div class="container frame ">
               <div id="base_number_container">
-                <div class="row">
-                  <div class="col-6">
 
-                    <label for="base-number-0"><b>رقم الأساس</b></label>
-                    <input type="number" class="base-number" id="base-number-0" placeholder="أدخل رقم الأساس"
-                      name="base-number[]">
-
-                  </div>
-                  <div class="col-6"><label for="yearSelect-0"><b>العام</b></label>
-                    <select id="yearSelect-0" name="year[]">
-                    </select>
-                  </div>
-
-                </div>
 
               </div>
 
               <hr>
-              <button id="pls-base-number" onclick="addBaseNumber()" type="button">
-                <span data-feather="plus" class="align-text-bottom "></span>
+              <div class="container">
+                <div class="row d-flex justify-content-evenly">
+                  <button id="pls-base-number" onclick="addBaseNumber()" type="button">
+                    <span data-feather="plus" class="align-text-bottom "></span>
+                  </button>
+                  <button id="del_base_number" onclick="deleteBaseNumberField()" type="button">
+                    <span data-feather="minus" class="align-text-bottom "></span>
+                  </button>
 
-              </button>
+
+                </div>
+              </div>
             </div>
-            <div class="container  ">
+            <div class="container">
               <div class="row">
 
-                <div class=" col-6">
+                <div class=" col-6"  style="height:  100%;">
                   <b
                     style="color: rgb(7, 48, 78); font-size: larger; font-weight: 500; justify-content: center; display: flex;">
                     الجهة
@@ -271,147 +268,92 @@
                     <div class=" col-6 frame">
                       <div class="clientvs1" id="clientvs1">
 
-                        <div id="clientPlaintiff0">
-                          <label for="client_name-0"><b>اسم المدعي</b></label>
-                          <input type="text" class="client_name" id="client_name-0" placeholder="أدخل اسم المدعي"
-                            name="client_names[]" oninput="showSuggestions(0, 'client')"
-                            onfocus="showSuggestions(0, 'client')" onblur="hideSuggestions(0, 'client')" required>
-                          <ul class="suggestions" id="suggestions-client-0"></ul>
-                        </div>
                       </div>
                       <hr>
-                      <div class="row ">
+                      <div class="container">
+                        <div class="row d-flex  justify-content-evenly">
 
-                        <div class="col-6">
                           <button id="client-pls-vs1" onclick="addClientPlaintiffField()" type="button">
                             <span data-feather="plus" class="align-text-bottom "></span>
 
                           </button>
-                        </div>
-                        <div class="col-6">
 
                           <button id="client-delete-vs1" onclick="deleteClientPlaintiffField()" type="button">
                             <span data-feather="minus" class="align-text-bottom "></span>
                           </button>
                         </div>
-
                       </div>
                     </div>
 
                     <div class=" col-6 frame">
                       <div class="lawyervs1" id="lawyervs1">
-
-                        <div id="lawyerPlaintiff0">
-
-                          <label for="lawyer_name-0"><b>اسم الوكيل</b></label>
-                          <input type="text" id="lawyer_name-0" placeholder="أدخل اسم الوكيل" name="lawyer_name[]">
-                        </div>
                       </div>
                       <hr>
-                      <div class="row ">
 
-                        <div class="col-6">
+                      <div class="container">
+                        <div class="row d-flex  justify-content-evenly">
                           <button id="lawyer-pls-vs1" onclick="addLawyerPlaintiffField()" type="button">
                             <span data-feather="plus" class="align-text-bottom "></span>
-
                           </button>
-                        </div>
-                        <div class="col-6">
-
-                          <button id="client-delete-vs1" onclick="deleteLawyerPlaintiffField()">
+                          <button id="lawyer-delete-vs1" onclick="deleteLawyerPlaintiffField()"type="button">
                             <span data-feather="minus" class="align-text-bottom "></span>
                           </button>
                         </div>
-
                       </div>
                     </div>
-
-
-
-
-
-
                   </div>
-
                 </div>
 
-                <div class=" col-6">
+
+                <div class=" col-6" >
                   <b
                     style="color: rgb(7, 48, 78); font-size: larger; font-weight: 500; justify-content: center; display: flex;">
                     الجهة المدعى عليها</b>
                   <br>
                   <div class="row ">
-                    <div class=" col-6 frame">
+                    <div class=" col-6 frame" >
                       <div class="clientvs2" id="clientvs2">
-
-                        <div id="clientEnemy0">
-                          <label for="enemy_name-0"><b>اسم المدعي عليه</b></label>
-                          <input type="text" class="clientEnemy_name" id="enemy_name-0" placeholder="أدخل اسم المدعي"
-                            name="clientEnemy_names[]" oninput="showSuggestions(0, 'enemy')"
-                            onfocus="showSuggestions(0, 'enemy')" onblur="hideSuggestions(0, 'enemy')" required>
-                          <ul class="suggestions" id="suggestions-enemy-0"></ul>
-                        </div>
                       </div>
                       <hr>
-                      <div class="row ">
-
-                        <div class="col-6">
+                      <div class="container">
+                        <div class="row d-flex  justify-content-evenly">
                           <button id="client-pls-vs2" onclick="addClientEnemyField()" type="button">
                             <span data-feather="plus" class="align-text-bottom "></span>
 
                           </button>
-                        </div>
-                        <div class="col-6">
-
                           <button id="client-delete-vs2" onclick="deleteClientEnemyField()" type="button">
                             <span data-feather="minus" class="align-text-bottom "></span>
                           </button>
                         </div>
-
                       </div>
                     </div>
 
                     <div class=" col-6 frame">
                       <div class="lawyervs2" id="lawyervs2">
 
-                        <div id="lawyerEnemy0">
-
-                          <label for="lawyerEnemy_name-0"><b>اسم الوكيل</b></label>
-                          <input type="text" id="lawyerEnemy_name-0" placeholder="أدخل اسم الوكيل"
-                            name="lawyerEnemy_name[]">
-                        </div>
                       </div>
                       <hr>
-                      <div class="row ">
-
-                        <div class="col-6">
+                      <div class="container">
+                        <div class="row d-flex  justify-content-evenly">
                           <button id="lawyer-pls-vs2" onclick="addLawyerEnemyField()" type="button">
                             <span data-feather="plus" class="align-text-bottom "></span>
 
                           </button>
-                        </div>
-                        <div class="col-6">
-
-                          <button id="client-delete-vs2" onclick="deleteLawyerEnemyField()" type="button">
+                          <button id="lawyer-delete-vs2" onclick="deleteLawyerEnemyField()" type="button">
                             <span data-feather="minus" class="align-text-bottom "></span>
                           </button>
                         </div>
-
                       </div>
+
+
                     </div>
-
-
-
-
-
-
                   </div>
                 </div>
               </div>
             </div>
 
 
-            <button type="submit" id="add_btn">إضافة</button>
+            <button type="submit" id="add_btn" onclick="edit()">تعديل</button>
           </div>
           <div id="error" class="error">
           </div>
@@ -427,7 +369,8 @@
     crossorigin="anonymous"></script>
 
 
-  <script src="../../js/cases/edit_case.js"></script>
+  <script src="../../js/cases/caseSet.js"></script>
+  <script src="../../js/cases/edit.js"></script>
 
   </script>
 

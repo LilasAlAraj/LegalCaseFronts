@@ -16,7 +16,7 @@ setInterval(updateTime, 1000);
 /********************* */
 
 let data, caseItem;
-let role = 1; //1->admin , 2->secretaria, 3->lawyer, 4->client
+let rule = 1; //1->admin , 2->secretaria, 3->lawyer, 4->client
 
 
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (response) {
 
-            setAuth();
+            setCaseAuth();
 
 
             const caseID = new URLSearchParams(window.location.search).get("id");
@@ -106,55 +106,37 @@ function setCaseData() {
 
 
 
-    // ضبط الجهة المدعية
-    tablePlaintaiff = document.getElementById('plaintaff_table_body');
+    // ضبط أطراف الدعوى
+    tableVss = document.getElementById('vss_table_body');
 
     plaintiff_lawyers = caseItem.plaintiff_lawyers;
     plaintiff_names = caseItem.plaintiff_names;
-
-    n = Math.max(plaintiff_lawyers.length, plaintiff_names.length);
-    for (var i = 0; i < n; i++) {
-
-        row = document.createElement('tr');
-        client_ = document.createElement('td');
-        if (i < plaintiff_names.length)
-            client_.append(plaintiff_names[i])
-
-        lawyer_ = document.createElement('td');
-        if (i < plaintiff_lawyers.length)
-            lawyer_.append(plaintiff_lawyers[i])
-
-        row.append(client_, lawyer_)
-        tablePlaintaiff.append(row)
-    }
-
-
-    // ضبط الجهة المدعى عليها
-    tableDefendant = document.getElementById('defendant_table_body');
-
     defendant_names = caseItem.defendant_names;
     defendant_lawyers = caseItem.defendant_lawyers;
-
-    n = Math.max(defendant_lawyers.length, defendant_names.length);
+    n = Math.max(plaintiff_lawyers.length, plaintiff_names.length, defendant_lawyers.length, defendant_names.length);
     for (var i = 0; i < n; i++) {
 
         row = document.createElement('tr');
-        client_ = document.createElement('td');
+        plaintiff_client_ = document.createElement('td');
+        if (i < plaintiff_names.length)
+            plaintiff_client_.append(plaintiff_names[i])
+
+        plaintiff_lawyer_ = document.createElement('td');
+        if (i < plaintiff_lawyers.length)
+            plaintiff_lawyer_.append(plaintiff_lawyers[i])
+
+
+        defendant_client_ = document.createElement('td');
         if (i < defendant_names.length)
-            client_.append(defendant_names[i])
+            defendant_client_.append(defendant_names[i])
 
-        lawyer_ = document.createElement('td');
+        defendant_lawyer_ = document.createElement('td');
         if (i < defendant_lawyers.length)
-            lawyer_.append(defendant_lawyers[i])
+            defendant_lawyer_.append(defendant_lawyers[i])
 
-        row.append(client_, lawyer_)
-        tableDefendant.append(row)
-        /**
-    *  <tr id="row1">
-                       <td>الاسم1</td>
-                       <td>الوكيل1</td>
-                     </tr>
-    */
+        row.append(plaintiff_client_, plaintiff_lawyer_, defendant_client_, defendant_lawyer_)
+        tableVss.append(row)
+
     }
 
 
@@ -187,9 +169,10 @@ function setCaseData() {
     sessions_table = document.getElementById('sessions-table-body');
     sessions = caseItem.sessions;
     for (var i = 0; i < sessions.length; i++) {
+        const sessionID = sessions[i].id;
         row = document.createElement('tr');
         num = document.createElement('td');
-        num.append(sessions[i].id);
+        num.append(sessionID);
 
         date = document.createElement('td');
         date.append(sessions[i].date);
@@ -197,7 +180,7 @@ function setCaseData() {
         details = document.createElement('td');
         details_str = sessions[i].details;
         if (sessions[i].details.length > 50)
-            details_str = sessions[i].details.substring(0, 50) + "..."
+            details_str = sessions[i].details.substring(0, 50) + '.. إلخ'
 
         details.append(details_str);
 
@@ -208,8 +191,10 @@ function setCaseData() {
             + ' عرض الجلسة كاملة'
         viewBtn.setAttribute('title', 'عرض الجلسة');
         viewBtn.classList.add('btn', 'btn-info', 'menu-operations-btn');
+        viewBtn.setAttribute("data-bs-toggle", "modal")
+        viewBtn.setAttribute("data-bs-target", "#viewSessionBackdrop")
         viewBtn.onclick = function () {
-            viewCase(case_.id)
+            viewSession(sessionID)
         }
 
 
@@ -231,15 +216,17 @@ function setCaseData() {
         viewOpLi.append(viewBtn);
         viewOpLi.classList = 'operationMenuItem'
 
-        if (role == 1 || role == 2) {
+        if (rule == 1 || rule == 2) {
 
             const deleteBtn = document.createElement('button');
             deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
                 + ' مسح الجلسة'
             deleteBtn.setAttribute('title', 'مسح الجلسة');
             deleteBtn.classList.add('btn', 'btn-danger', 'menu-operations-btn');
-            deleteBtn.onclick = function () {
-                deleteCase(case_.id)
+            deleteBtn.setAttribute("data-bs-toggle", "modal")
+            deleteBtn.setAttribute("data-bs-target", "#deleteSessionBackdrop")
+            document.getElementById('deleteSessionButton').onclick = function () {
+                deleteSession(sessionID)
             }
 
 
@@ -265,11 +252,11 @@ function setCaseData() {
 
 }
 
-function setAuth() {
+function setCaseAuth() {
 
 
 
-    if (role != 1 && role != 2) {
+    if (rule != 1 && rule != 2) {
     }
     else {
 
@@ -358,7 +345,7 @@ function setAuth() {
         attachments.innerHTML = ' <button type="button" class="operations-btn btn btn-primary"'
             + ' data-bs-toggle="modal" data-bs-target="#addNewAttachmentBackdrop">'
 
-            + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
+            + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus align-text-bottom" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
             + ' إضافة مرفق جديد'
             + '</button>'
         document.getElementById('attachments').append(attachments)
@@ -368,7 +355,6 @@ function setAuth() {
         decisions.classList.add('container');
         decisions.innerHTML = ' <button type="button" class="operations-btn btn btn-primary"'
             + ' data-bs-toggle="modal" data-bs-target="#addNewDecisionBackdrop">'
-
             + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
             + ' إضافة قرار جديد'
             + '</button>'
@@ -430,6 +416,7 @@ function archiveCase() {
         data: { id: caseItem.id }, // بيانات الطلب، في هذا المثال نحن نرسل معرف العنصر الذي نريد حذفه
         success: function (response) { // الدالة التي تنفذ بنجاح عندما يتم الحذف
             console.log(response); // عرض الاستجابة في وحدة التحكم بالمتصفح
+            window.location.href = "view.html"
 
         },
         error: function (xhr, status, error) { // الدالة التي تنفذ في حالة وجود خطأ أثناء الحذف

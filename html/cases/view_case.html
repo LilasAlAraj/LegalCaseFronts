@@ -228,40 +228,24 @@
                 </div>
               </div>
               <div class="basic-info">
-                <div class="row">
-                  <div class="container plaintaff col-6">
+                <div class="row container">
+                  <table class="table table-bordered ">
+                    <thead>
+                      <tr>
+                        <th colspan="2">الجهة المدعية</th>
+                        <th colspan="2">الجهة المدعى عليها</th>
 
-                    <table class="table table-bordered ">
-                      <thead>
-                        <tr>
-                          <th colspan="2">الجهة المدعية</th>
-                        </tr>
-                        <tr>
-                          <th>الاسم</th>
-                          <th>الوكيل</th>
-                        </tr>
-                      </thead>
-                      <tbody id='plaintaff_table_body'>
+                      </tr>
 
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="container enemy col-6">
-                    <table class="table table-bordered ">
-                      <thead>
-                        <tr>
-                          <th colspan="2">الجهة المدعى عليها</th>
-                        </tr>
-                        <tr>
-                          <th>الاسم</th>
-                          <th>الوكيل</th>
-                        </tr>
-                      </thead>
-                      <tbody id="defendant_table_body">
+                      <th>الاسم</th>
+                      <th>الوكيل</th>
+                      <th>الاسم</th>
+                      <th>الوكيل</th>
+                    </thead>
+                    <tbody id='vss_table_body'>
 
-                      </tbody>
-                    </table>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
@@ -592,7 +576,7 @@
               إضافة الجلسة
 
             </button>
-            <button type="reset" typr="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+            <button type="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
               <span data-feather="x" class="align-text-bottom"></span>
               أغلق
             </button>
@@ -647,7 +631,7 @@
               <span data-feather="plus" class="align-text-bottom"></span>
               إضافة مرفق
             </button>
-            <button type="reset" typr="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+            <button type="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
               <span data-feather="x" class="align-text-bottom"></span>
               أغلق
             </button>
@@ -703,7 +687,7 @@
               <span data-feather="plus" class="align-text-bottom"></span>
               إضافة قرار
             </button>
-            <button type="reset" typr="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+            <button type="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
               <span data-feather="x" class="align-text-bottom"></span>
               أغلق
             </button>
@@ -738,7 +722,7 @@
             <span data-feather="archive" class="align-text-bottom"></span>
             أرشف
           </button>
-          <button type="button" typr="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
             <span data-feather="x" class="align-text-bottom"></span>
             أغلق
           </button>
@@ -770,7 +754,7 @@
             <span data-feather="trash" class="align-text-bottom"></span>
             احذف
           </button>
-          <button type="button" typr="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
             <span data-feather="x" class="align-text-bottom"></span>
             أغلق
           </button>
@@ -781,7 +765,7 @@
     </div>
   </div>
 
-  
+
   <!--popup edit case-->
   <div class="modal fade" id="editCaseBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="editCaseBackdropLabel" aria-hidden="true">
@@ -802,7 +786,7 @@
             <span data-feather="edit-2" class="align-text-bottom"></span>
             انتقل للتعديل
           </button>
-          <button type="button" typr="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
             <span data-feather="x" class="align-text-bottom"></span>
             أغلق
           </button>
@@ -814,18 +798,232 @@
   </div>
 
 
+  <!--popup view session-->
+  <div class="modal fade" id="viewSessionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="viewSessionBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable"
+      style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="viewSessionBackdropLabel" style=" color:white;">
+            عرض الجلسة
+          </h1>
+        </div>
+        <div class=" modal-body" style="">
+
+          <div class="container">
+            <div>
+              <b>رقم الجلسة: </b>
+              <span id="sessionNumber">
+              </span>
+            </div>
+            <div>
+              <b>تاريخ الجلسة: </b>
+              <span id="sessionDate">
+              </span>
+            </div>
+            <div>
+              <b>تفاصيل الجلسة: </b>
+              <span id="sessionDetails">
+
+              </span>
+            </div>
+          </div>
+          <div id="sessionOpperation">
+
+          </div>
+
+          <div class="container">
+
+            <div class="d-flex justify-content-between">
+              <h3>المرفقات</h3>
+              <div id="AddAttaachmentForSession">
+               
+              </div>
+            </div>
+
+            <hr>
+            <table class="table table-bordered table-striped ">
+              <thead>
+
+                <tr>
+                  <th>رقم المرفق</th>
+                  <th>النوع</th>
+                  <th>التفاصيل</th>
+                  <th>العمليات</th>
+                </tr>
+              </thead>
+              <tbody id="sessionAttachments-body">
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div class="modal-footer " style="width:auto;">
+
+
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+            <span data-feather="x" class="align-text-bottom"></span>
+            أغلق
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--popup delete session-->
+  <div class="modal fade" id="deleteSessionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="deleteSessionBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="deleteSessionBackdropLabel" style=" color:white;">
+            تأكيد عملية الحذف
+          </h1>
+        </div>
+        <div class=" modal-body" style="">
+          <p>
+            هل أنت متأكد من حذف هذه الجلسة؟
+          </p>
+        </div>
+        <div class="modal-footer " style="width:auto;">
+          <button type="submit" id="deleteSessionButton" class="operations-btn btn btn-danger">
+            <span data-feather="trash" class="align-text-bottom"></span>
+            احذف
+          </button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+            <span data-feather="x" class="align-text-bottom"></span>
+            أغلق
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--popup add new attachment for session-->
+  <div class="modal fade" id="addNewSessionAttachmentBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="addNewSessionAttachmentBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="addNewSessionAttachmentBackdropLabel" style=" color:white;">
+            إضافة مرفق جديد للجلسة
+          </h1>
+        </div>
+        <form id='addNewSessionAttachment_form' method="post" style="background-color: transparent; border:none">
+          <div class=" modal-body" style="">
+            <div class="container">
+              <div class="row ">
+                <div class="col-12">
+                  <label for="newSessionAttachment_type"><b>نوع المرفق</b></label>
+                  <input class="form-control" id="newSessionAttachment_type" name="newSessionAttachment_type" required>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-12">
+                  <label for="newSessionAttachment_detail"><b>تفاصيل المرفق</b></label>
+                  <textarea class="form-control" id="newSessionAttachment_detail" name="newSessionAttachment_detail"
+                    rows="5" style="max-height:8em;" required></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <label for="newSeesionAttachmentFile"><b>اختيار المرفق</b></label>
+                  <input class="form-control" type="file" name="newSeesionAttachmentFile" id="newSeesionAttachmentFile"
+                    required>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer " style="width:auto;">
+            <button type="submit" class="operations-btn btn btn-success" onclick="addNewSessionAttachment()">
+              <span data-feather="plus" class="align-text-bottom"></span>
+              إضافة مرفق
+            </button>
+            <button type="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+              <span data-feather="x" class="align-text-bottom"></span>
+              أغلق
+            </button>
+            <br>
+            <div id="errorAddSessionAttachment" class="error">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!--popup edit  session-->
+  <div class="modal fade" id="editSessionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="editSessionBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="editSessionBackdropLabel" style=" color:white;">
+            تعديل الجلسة
+          </h1>
+        </div>
 
 
 
+        <form id='editSession_form' method="post" style="background-color: transparent; border:none">
+          <div class=" modal-body" style="">
+            <div class="container">
+              <div class="row ">
+                <div class="col-6">
+                  <label for="editSessionNumber"><b>رقم الجلسة</b></label>
+                  <input type="number" id="editSessionNumber" name="editSessionNumber" placeholder="أدخل رقم الجلسة"
+                    required>
+                </div>
+
+                <div class="col-6">
+                  <label for="editSessionDate"><b>تاريخ الجلسة</b></label>
+                  <input type="date" id="editSessionDate" name="editSessionDate" placeholder="أدخل تاريخ الجلسة"
+                    required>
+                </div>
+
+              </div>
+
+              <div class="row ">
+                <div class="col-12">
+                  <label for="editSessionDetails"><b>تفاصيل الجلسة</b></label>
+                  <textarea class="form-control" id="editSessionDetails" name="editSessionDetails" rows="5"
+                    style="max-height:10em;" required></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer " style="width:auto;">
+            <button type="submit" class="operations-btn btn btn-secondary">
+              <span data-feather="edit-2" class="align-text-bottom"></span>
+              تعديل الجلسة
+
+            </button>
+            <button type="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+              <span data-feather="x" class="align-text-bottom"></span>
+              أغلق
+            </button>
+            <br>
+            <div id="errorEditSession" class="error">
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
     crossorigin="anonymous"></script>
 
 
-  <script src="../../js/cases/view_case.js">
-
-  </script>
+  <script src="../../js/cases/view_case.js">  </script>
+  <script src="../../js/cases/viewSession.js">  </script>
 
   </script>
 

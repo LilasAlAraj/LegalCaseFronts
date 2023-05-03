@@ -230,7 +230,7 @@ tr.clickable-row:hover td {
 #add-appointment-button,
 #add-session-button,
 #add-decision-button,
-#add-attachment-button {
+#add-session-attachment-button {
     background-color: rgb(87, 126, 155);
 
 }

@@ -28,15 +28,18 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (response) {
 
-            setCaseAuth();
+
 
 
             const caseID = new URLSearchParams(window.location.search).get("id");
             function isBigEnough(value) {
                 return value.id == caseID;
             }
-
             data = response.filter(isBigEnough);
+            caseItem = data[0]
+
+            setCaseAuth();
+
             setCaseData();
 
         },
@@ -55,7 +58,6 @@ $(document).ready(function () {
 
 function setCaseData() {
 
-    caseItem = data[0]
     // ضبط المحكمة
     document.getElementById('court').append(caseItem.court)
     // ضبط الغرفة
@@ -169,54 +171,79 @@ function setCaseData() {
     sessions_table = document.getElementById('sessions-table-body');
     sessions = caseItem.sessions;
     for (var i = 0; i < sessions.length; i++) {
-        const sessionID = sessions[i].id;
-        row = document.createElement('tr');
-        num = document.createElement('td');
-        num.append(sessionID);
+        addSessionRow(sessions_table, sessions[i]);
+    }
 
-        date = document.createElement('td');
-        date.append(sessions[i].date);
-
-        details = document.createElement('td');
-        details_str = sessions[i].details;
-        if (sessions[i].details.length > 50)
-            details_str = sessions[i].details.substring(0, 50) + '.. إلخ'
-
-        details.append(details_str);
+    // ضبط مرفقات القضية
+    attachment_table = document.getElementById('attachment-case-table-body');
+    attachments = caseItem.attachments;
+    for (var i = 0; i < attachments.length; i++) {
+        addAttachmentRow(attachment_table, attachments[i]);
+    }
 
 
 
-        const viewBtn = document.createElement('button')
-        viewBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye align-text-bottom" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>'
-            + ' عرض الجلسة كاملة'
-        viewBtn.setAttribute('title', 'عرض الجلسة');
-        viewBtn.classList.add('btn', 'btn-info', 'menu-operations-btn');
-        viewBtn.setAttribute("data-bs-toggle", "modal")
-        viewBtn.setAttribute("data-bs-target", "#viewSessionBackdrop")
-        viewBtn.onclick = function () {
-            viewSession(sessionID)
-        }
+    // ضبط قرارات القضية
+    decision_table = document.getElementById('decision-table-body');
+    decisions = caseItem.decisions;
+    for (var i = 0; i < decisions.length; i++) {
+        addDecisionRow(decision_table, decisions[i]);
+    }
+
+
+}
+function addSessionRow(table, session) {
+    const sessionID = session.id;
+    row = document.createElement('tr');
+    num = document.createElement('td');
+    num.append(sessionID);
+
+    date = document.createElement('td');
+    date.append(session.date);
+
+    details = document.createElement('td');
+    details_str = session.details;
+    if (session.details.length > 50)
+        details_str = session.details.substring(0, 50) + '.. إلخ'
+
+    details.append(details_str);
 
 
 
-        const operations = document.createElement('div');
-        operations.classList.add('dropdown');
-        const opBtn = document.createElement('button');
+    const viewBtn = document.createElement('button')
+    viewBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye align-text-bottom" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>'
+        + ' عرض الجلسة كاملة'
+    viewBtn.setAttribute('title', 'عرض الجلسة');
+    viewBtn.classList.add('btn', 'btn-info', 'menu-operations-btn');
+    viewBtn.setAttribute("data-bs-toggle", "modal")
+    viewBtn.setAttribute("data-bs-target", "#viewSessionBackdrop")
+    viewBtn.onclick = function () {
+        viewSession(sessionID)
+    }
 
-        opBtn.classList.add('dropdown-toggle', 'btn', 'btn-secondary')
-        opBtn.type = 'button';
-        opBtn.setAttribute("data-bs-toggle", "dropdown")
-        opBtn.setAttribute("aria-expanded", "false");
-        const operationMenu = document.createElement('ul');
-        operationMenu.id = 'operationMenu';
-        operationMenu.classList.add('dropdown-menu');
 
 
-        const viewOpLi = document.createElement('li');
-        viewOpLi.append(viewBtn);
-        viewOpLi.classList = 'operationMenuItem'
+    const operations = document.createElement('div');
+    operations.classList.add('dropdown');
+    const opBtn = document.createElement('button');
 
-        if (rule == 1 || rule == 2) {
+    opBtn.classList.add('dropdown-toggle', 'btn', 'btn-secondary')
+    opBtn.type = 'button';
+    opBtn.setAttribute("data-bs-toggle", "dropdown")
+    opBtn.setAttribute("aria-expanded", "false");
+    const operationMenu = document.createElement('ul');
+    operationMenu.id = 'operationMenu';
+    operationMenu.classList.add('dropdown-menu');
+
+
+    const viewOpLi = document.createElement('li');
+    viewOpLi.append(viewBtn);
+    viewOpLi.classList = 'operationMenuItem'
+    operationMenu.append(viewOpLi)
+
+    if (rule == 1 || rule == 2) {
+        if (!caseItem.isArchived) {
+
 
             const deleteBtn = document.createElement('button');
             deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
@@ -237,21 +264,110 @@ function setCaseData() {
 
 
 
-            operationMenu.append(viewOpLi, delOpLi,);
-
-        } else {
-            operationMenu.append(viewOpLi)
+            operationMenu.append(delOpLi);
         }
 
-
-        operations.append(opBtn, operationMenu);
-        row.append(num, date, details, operations);
-        sessions_table.append(row)
     }
+
+
+    operations.append(opBtn, operationMenu);
+    row.append(num, date, details, operations);
+    table.append(row)
+
+}
+
+
+function addAttachmentRow(table, attachment) {
+
+
+    const attachmentID = attachment.id;
+    row = document.createElement('tr');
+    num = document.createElement('td');
+    num.append(attachmentID);
+
+    type = document.createElement('td');
+    type.append(attachment.type);
+
+    details = document.createElement('td');
+    details.append(attachment.details);
+
+
+
+
+    const downloadOp = document.createElement('button');
+    downloadOp.title = 'تحميل المرفق';
+    downloadOp.classList.add('btn', 'btn-info');
+    downloadOp.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hard-drive align-text-bottom" aria-hidden="true"><line x1="22" y1="12" x2="2" y2="12"></line><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path><line x1="6" y1="16" x2="6.01" y2="16"></line><line x1="10" y1="16" x2="10.01" y2="16"></line></svg>'
+        + " تحميل";
+    downloadOp.onclick = function () {
+        downloadAttachmentOfCase(attachment.id);
+    }
+
+    const downloadOpLi = document.createElement('li');
+    downloadOpLi.append(downloadOp)
+    downloadOpLi.classList = 'operationMenuItem'
+
+
+
+
+    const operations = document.createElement('div');
+    operations.classList.add('dropdown');
+    const opBtn = document.createElement('button');
+
+    opBtn.classList.add('dropdown-toggle', 'btn', 'btn-secondary')
+    opBtn.type = 'button';
+    opBtn.setAttribute("data-bs-toggle", "dropdown")
+    opBtn.setAttribute("aria-expanded", "false");
+    const operationMenu = document.createElement('ul');
+    operationMenu.id = 'operationMenu';
+    operationMenu.classList.add('dropdown-menu');
+    operationMenu.append(downloadOpLi)
+
+    if (rule == 1 || rule == 2) {
+        if (!caseItem.isArchived) {
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
+                + ' مسح المرفق'
+            deleteBtn.setAttribute('title', 'مسح المرفق');
+            deleteBtn.classList.add('btn', 'btn-danger', 'menu-operations-btn');
+            deleteBtn.setAttribute("data-bs-toggle", "modal")
+            deleteBtn.setAttribute("data-bs-target", "#deleteCaseAttachmentBackdrop")
+            document.getElementById('deleteAttachmentButton').onclick = function () {
+                deleteAttachmentOfCase(attachmentID)
+            }
+
+
+
+            const delOpLi = document.createElement('li');
+            delOpLi.append(deleteBtn)
+            delOpLi.classList = 'operationMenuItem'
+
+
+
+            operationMenu.append(delOpLi);
+        }
+    }
+
+
+    operations.append(opBtn, operationMenu);
+    row.append(num, type, details, operations);
+    table.append(row)
+
+}
+
+
+
+function downloadAttachmentOfCase(attID) {
+    console.log('downloadAttachmentOfCase' + attID)
 
 
 }
 
+function deleteAttachmentOfCase(attID) {
+    console.log('deleteAttachmentOfCase' + attID)
+
+}
 function setCaseAuth() {
 
 
@@ -261,16 +377,20 @@ function setCaseAuth() {
     else {
 
 
+        case_operation = document.createElement('div');
+        case_operation.classList.add('container')
+        if (!caseItem.isArchived) {
 
-
-        const edit_btn = document.createElement('button')
-        edit_btn.type = "button"
-        edit_btn.id = "edit-button"
-        edit_btn.classList.add('operations-btn', 'btn', 'btn-secondary')
-        edit_btn.setAttribute("data-bs-toggle", "modal")
-        edit_btn.setAttribute("data-bs-target", "#editCaseBackdrop")
-        edit_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit align-text-bottom" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>'
-            + ' تعديل معلومات القضية';
+            const edit_btn = document.createElement('button')
+            edit_btn.type = "button"
+            edit_btn.id = "edit-button"
+            edit_btn.classList.add('operations-btn', 'btn', 'btn-secondary')
+            edit_btn.setAttribute("data-bs-toggle", "modal")
+            edit_btn.setAttribute("data-bs-target", "#editCaseBackdrop")
+            edit_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit align-text-bottom" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>'
+                + ' تعديل معلومات القضية';
+            case_operation.append(edit_btn)
+        }
 
 
         const remove_btn = document.createElement('button')
@@ -289,76 +409,86 @@ function setCaseAuth() {
         archive_btn.classList.add('operations-btn', 'btn', 'btn-warning')
         archive_btn.setAttribute("data-bs-toggle", "modal")
         archive_btn.setAttribute("data-bs-target", "#archiveCaseBackdrop");
-        archive_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive align-text-bottom" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>'
-            + ' أرشفة القضية'
-        case_operation = document.createElement('div');
-        case_operation.classList.add('container')
-        case_operation.append(edit_btn, remove_btn, archive_btn);
+
+        if (caseItem.isArchived) {//القضية مؤرشفة
+            archive_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive align-text-bottom" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>'
+                + ' إلغاء أرشفة القضية'
+        } else { //القضية غير مؤرشفة
+            archive_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive align-text-bottom" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>'
+                + ' أرشفة القضية'
+        }
+        case_operation.append(remove_btn)
+        case_operation.append(archive_btn);
 
 
         document.getElementById('infoOfCase').append(case_operation)
 
 
+        //لا يتم تغيير أي حالة مادام القضية مؤرشفة
+        if (!caseItem.isArchived) {
 
+            edit_state_btn = document.createElement('button')
+            edit_state_btn.type = "button"
+            edit_state_btn.classList.add('operations-btn', 'btn', 'btn-secondary');
+            edit_state_btn.setAttribute("data-bs-toggle", "modal")
+            edit_state_btn.setAttribute("data-bs-target", "#staticBackdrop")
+            edit_state_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit align-text-bottom" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>'
+                + ' تعديل الحالة';
 
-        edit_state_btn = document.createElement('button')
-        edit_state_btn.type = "button"
-        edit_state_btn.classList.add('operations-btn', 'btn', 'btn-secondary');
-        edit_state_btn.setAttribute("data-bs-toggle", "modal")
-        edit_state_btn.setAttribute("data-bs-target", "#staticBackdrop")
-        edit_state_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit align-text-bottom" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>'
-            + ' تعديل الحالة';
-
-        document.getElementById('case_state').append(edit_state_btn)
-
-
-
-
-
-        edit_additional_details = document.createElement('div');
-        edit_additional_details.classList.add('container');
-        edit_additional_details.innerHTML = ' <button type="button" class="operations-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#changeAdditionalDetailsBackdrop"'
-            + 'onclick="loadAdditionalDetails()">'
-            + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit align-text-bottom" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>'
-            + ' تعديل التفاصيل الإضافية'
-
-            + '</button>'
+            document.getElementById('case_state').append(edit_state_btn)
+        }
 
 
 
-        document.getElementById('additional_details').append(edit_additional_details)
+        if (!caseItem.isArchived) {
 
 
+            edit_additional_details = document.createElement('div');
+            edit_additional_details.classList.add('container');
+            edit_additional_details.innerHTML = ' <button type="button" class="operations-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#changeAdditionalDetailsBackdrop"'
+                + 'onclick="loadAdditionalDetails()">'
+                + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit align-text-bottom" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>'
+                + ' تعديل التفاصيل الإضافية'
 
-        sessions = document.createElement('div');
-        sessions.classList.add('container');
-        sessions.innerHTML = ' <button type="button" class="operations-btn btn btn-primary"'
-            + ' data-bs-toggle="modal" data-bs-target="#addNewSessionBackdrop">'
-            + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
-            + ' إضافة جلسة جديدة'
-            + '</button>'
-        document.getElementById('sessions').append(sessions)
+                + '</button>'
+            document.getElementById('additional_details').append(edit_additional_details)
+        }
 
+        if (!caseItem.isArchived) {
 
-        attachments = document.createElement('div');
-        attachments.classList.add('container');
-        attachments.innerHTML = ' <button type="button" class="operations-btn btn btn-primary"'
-            + ' data-bs-toggle="modal" data-bs-target="#addNewAttachmentBackdrop">'
+            sessions = document.createElement('div');
+            sessions.classList.add('container');
+            sessions.innerHTML = ' <button type="button" class="operations-btn btn btn-primary"'
+                + ' data-bs-toggle="modal" data-bs-target="#addNewSessionBackdrop">'
+                + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
+                + ' إضافة جلسة جديدة'
+                + '</button>'
+            document.getElementById('sessions').append(sessions)
+        }
 
-            + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus align-text-bottom" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
-            + ' إضافة مرفق جديد'
-            + '</button>'
-        document.getElementById('attachments').append(attachments)
+        if (!caseItem.isArchived) {
 
+            attachments = document.createElement('div');
+            attachments.classList.add('container');
+            attachments.innerHTML = ' <button type="button" class="operations-btn btn btn-primary"'
+                + ' data-bs-toggle="modal" data-bs-target="#addNewAttachmentBackdrop">'
 
-        decisions = document.createElement('div');
-        decisions.classList.add('container');
-        decisions.innerHTML = ' <button type="button" class="operations-btn btn btn-primary"'
-            + ' data-bs-toggle="modal" data-bs-target="#addNewDecisionBackdrop">'
-            + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
-            + ' إضافة قرار جديد'
-            + '</button>'
-        document.getElementById('decisions').append(decisions)
+                + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus align-text-bottom" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
+                + ' إضافة مرفق جديد'
+                + '</button>'
+            document.getElementById('attachments').append(attachments)
+        }
+        if (!caseItem.isArchived) {
+
+            decisions = document.createElement('div');
+            decisions.classList.add('container');
+            decisions.innerHTML = ' <button type="button" class="operations-btn btn btn-primary"'
+                + ' data-bs-toggle="modal" data-bs-target="#addNewDecisionBackdrop">'
+                + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
+                + ' إضافة قرار جديد'
+                + '</button>'
+            document.getElementById('decisions').append(decisions)
+        }
     }
 }
 
@@ -610,7 +740,7 @@ function addNewSession() {
     $newSession->sessionDate = $request->input('newSessionDate');
     $newSession->sessionDetails = $request->input('newSessionDetails');
     $newSession->caseID = $request->input('caseID');
-
+ 
     if ($request->hasFile('sessionAttachments')) {
         $files = $request->file('sessionAttachments');
         foreach ($files as $file) {
@@ -618,9 +748,9 @@ function addNewSession() {
             $file->storeAs('attachments', $filename);
         }
     }
-
+ 
     $newSession->save();
-
+ 
     return response()->json([
         'message' => 'Session added successfully',
         'session' => $newSession
@@ -689,76 +819,6 @@ function addNewAttachment() {
                     // Handle the error
                     console.log(xhr.responseText);
                     $('#errorAddAttachment').html('error 404');
-
-                }
-            });
-        }
-    });
-
-
-}
-
-
-function addNewDecision() {
-
-
-    $('#addNewDecision_form').validate({
-        rules: {
-            newDecisionNumber: {
-                required: true
-            },
-            newDecisionDate: {
-                required: true
-            },
-            newDecisionDetails: {
-                required: true,
-                extension: 'pdf|jpeg|jpg|png'
-
-            }
-        },
-        messages: {
-            newDecisionNumber: {
-                required: "الرجاء إدخال رقم القرار"
-            },
-            newDecisionDate: {
-                required: "الرجاء إدخال تاريخ القرار"
-            },
-            newDecisionDetails: {
-                required: "الرجاء إدخال تفاصيل القرار",
-            }
-        },
-        submitHandler: function (form) {
-            // تحديد المتغيرات اللازمة
-            newDecisionNumber = $("#newDecisionNumber").val();
-            newDecisionDate = $("#newDecisionDate").val();
-            newDecisionDetails = $("#newDecisionDetails").val();
-
-            caseID = new URLSearchParams(window.location.search).get("id");
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                url: 'add_new_session.php',
-                method: 'POST',
-                data: {
-                    //    "_token": "{{ csrf_token() }}",
-                    "newDecisionNumber": newDecisionNumber,
-                    "newDecisionDate": newDecisionDate,
-                    "newDecisionDetails": newDecisionDetails,
-                    "caseID": caseID
-                },
-                success: function (response) {
-                    // Handle the response from the server
-                    console.log(response);
-                },
-                error: function (xhr, status, error) {
-                    // Handle the error
-                    console.log(xhr.responseText);
-                    $('#errorAddDecision').html('error 404');
 
                 }
             });

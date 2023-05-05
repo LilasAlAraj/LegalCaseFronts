@@ -86,7 +86,7 @@
                         إضافة قضية جديدة
 
                       </a></li>
-                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                    <li><a href="../cases/view.html" class="nav-link d-inline-flex  collapse-items">
                         <span data-feather="file-text" class="align-text-bottom"></span>
                         عرض القضايا
                       </a></li>
@@ -96,7 +96,7 @@
                         استرجاع القضايا المشابهة
 
                       </a></li>
-                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
+                    <li><a href="../cases/archive.html" class="nav-link d-inline-flex  collapse-items">
                         <span data-feather="archive" class="align-text-bottom"></span>
                         أرشيف القضايا
                       </a></li>
@@ -268,8 +268,9 @@
                   data-bs-parent="#myAccordion">
                   <div class="accordion-body container">
                     <div class="container" id="case_state" style="display: flex;justify-content: space-between;">
-                      <div id="state" class="badge"
-                        style="align-items: center; display: flex; font-weight: 900;font-size: larger;"></div>
+                      <div id="state" class="badge state"
+                        style="align-items: center; display: flex; font-weight: 900;font-size: larger; color: white;">
+                      </div>
                     </div>
 
                   </div>
@@ -347,25 +348,11 @@
                             <th>رقم المرفق</th>
                             <th>النوع</th>
                             <th>التفاصيل</th>
+                            <th>العمليات</th>
                           </tr>
                         </thead>
-                        <tbody style="cursor: pointer;">
-                          <tr id="row1" class='clickable-row'>
-                            <td>1</td>
-                            <td>dd/mm/yyyy</td>
-                            <td>desc1</td>
+                        <tbody id='attachment-case-table-body'>
 
-                          </tr>
-                          <tr id="row2" class='clickable-row'>
-                            <td>2</td>
-                            <td>dd/mm/yyyy</td>
-                            <td>desc2</td>
-                          </tr>
-                          <tr id="row3" class='clickable-row'>
-                            <td>3</td>
-                            <td>dd/mm/yyyy</td>
-                            <td>desc3</td>
-                          </tr>
                         </tbody>
                       </table>
 
@@ -389,25 +376,11 @@
                             <th>رقم القرار</th>
                             <th>التاريخ</th>
                             <th>التفاصيل</th>
+                            <th>العمليات</th>
                           </tr>
                         </thead>
-                        <tbody style="cursor: pointer;">
-                          <tr id="row1" class='clickable-row'>
-                            <td>1</td>
-                            <td>type1</td>
-                            <td>name1</td>
+                        <tbody id="decision-table-body">
 
-                          </tr>
-                          <tr id="row2" class='clickable-row'>
-                            <td>2</td>
-                            <td>type2</td>
-                            <td>name2</td>
-                          </tr>
-                          <tr id="row3" class='clickable-row'>
-                            <td>3</td>
-                            <td>type3</td>
-                            <td>name3</td>
-                          </tr>
                         </tbody>
                       </table>
 
@@ -644,62 +617,6 @@
     </div>
   </div>
 
-  <!--popup add new decision-->
-  <div class="modal fade" id="addNewDecisionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="addNewDecisionBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="height: fit-content; ">
-      <div class="modal-content">
-        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
-          <h1 class="modal-title fs-5" id="addNewDecisionBackdropLabel" style=" color:white;">
-            إضافة قرار جديد للقضية
-          </h1>
-        </div>
-        <form id='addNewDecision_form' method="post" style="background-color: transparent; border:none">
-          <div class=" modal-body" style="">
-            <div class="container">
-              <div class="row ">
-                <div class="col-6">
-                  <label for="newDecisionNumber"><b>رقم القرار</b></label>
-                  <input type="number" id="newDecisionNumber" name="newDecisionNumber" placeholder="أدخل رقم القرار"
-                    required>
-                </div>
-
-                <div class="col-6">
-                  <label for="newDecisionDate"><b>تاريخ الإقرار</b></label>
-                  <input type="date" id="newDecisionDate" name="newDecisionDate" placeholder="أدخل تاريخ القرار"
-                    required>
-                </div>
-
-              </div>
-
-              <div class="row ">
-                <div class="col-12">
-                  <label for="newDecisionDetails"><b>تفاصيل القرار</b></label>
-                  <textarea class="form-control" id="newDecisionDetails" name="newDecisionDetails" rows="5"
-                    style="max-height:12em;" required></textarea>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <div class="modal-footer " style="width:auto;">
-            <button type="submit" class="operations-btn btn btn-success" onclick="addNewDecision()">
-              <span data-feather="plus" class="align-text-bottom"></span>
-              إضافة قرار
-            </button>
-            <button type="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
-              <span data-feather="x" class="align-text-bottom"></span>
-              أغلق
-            </button>
-            <br>
-            <div id="errorAddDecision" class="error">
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
 
 
   <!--popup archive case-->
@@ -799,6 +716,57 @@
 
 
   <!--popup view session-->
+  <div class="modal fade" id="viewDecicionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="viewDecicionBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable"
+      style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="viewDecicionBackdropLabel" style=" color:white;">
+            عرض القرار
+          </h1>
+        </div>
+        <div class=" modal-body">
+
+          <div class="container">
+            <div>
+              <b>رقم القرار </b>
+              <span id="decisionNumber">
+              </span>
+            </div>
+            <div>
+              <b>تاريخ القرار: </b>
+              <span id="decisionDate">
+              </span>
+            </div>
+            <div>
+              <b>تفاصيل القرار: </b>
+              <span id="decisionDetails">
+
+              </span>
+            </div>
+          </div>
+          <div id="decisionOpperation">
+
+          </div>
+
+
+        </div>
+        <div class="modal-footer " style="width:auto;">
+
+
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+            <span data-feather="x" class="align-text-bottom"></span>
+            أغلق
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--popup view session-->
   <div class="modal fade" id="viewSessionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="viewSessionBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable"
@@ -838,7 +806,7 @@
             <div class="d-flex justify-content-between">
               <h3>المرفقات</h3>
               <div id="AddAttaachmentForSession">
-               
+
               </div>
             </div>
 
@@ -1009,7 +977,6 @@
             </button>
             <br>
             <div id="errorEditSession" class="error">
-
             </div>
           </div>
         </form>
@@ -1017,6 +984,181 @@
     </div>
   </div>
 
+
+  <!--popup delete attachment of case-->
+  <div class="modal fade" id="deleteCaseAttachmentBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="deleteCaseAttachmentBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="deleteCaseAttachmentBackdropLabel" style=" color:white;">
+            تأكيد عملية الحذف
+          </h1>
+        </div>
+        <div class=" modal-body" style="">
+          <p>
+            هل أنت متأكد من حذف هذا المرفق؟
+          </p>
+        </div>
+        <div class="modal-footer " style="width:auto;">
+          <button type="submit" id="deleteAttachmentButton" class="operations-btn btn btn-danger">
+            <span data-feather="trash" class="align-text-bottom"></span>
+            احذف
+          </button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+            <span data-feather="x" class="align-text-bottom"></span>
+            أغلق
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--popup delete attachment of case-->
+  <div class="modal fade" id="deleteDecisionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="deleteDecisionBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="deleteDecisionBackdropLabel" style=" color:white;">
+            تأكيد عملية الحذف
+          </h1>
+        </div>
+        <div class=" modal-body" style="">
+          <p>
+            هل أنت متأكد من حذف هذا القرار؟
+          </p>
+        </div>
+        <div class="modal-footer " style="width:auto;">
+          <button type="submit" id="deleteDecisionButton" class="operations-btn btn btn-danger">
+            <span data-feather="trash" class="align-text-bottom"></span>
+            احذف
+          </button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+            <span data-feather="x" class="align-text-bottom"></span>
+            أغلق
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!--popup add new decision-->
+  <div class="modal fade" id="addNewDecisionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="addNewDecisionBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="addNewDecisionBackdropLabel" style=" color:white;">
+            إضافة قرار جديد للقضية
+          </h1>
+        </div>
+        <form id='addNewDecision_form' method="post" style="background-color: transparent; border:none">
+          <div class=" modal-body" style="">
+            <div class="container">
+              <div class="row ">
+                <div class="col-6">
+                  <label for="newDecisionNumber"><b>رقم القرار</b></label>
+                  <input type="number" id="newDecisionNumber" name="newDecisionNumber" placeholder="أدخل رقم القرار"
+                    required>
+                </div>
+
+                <div class="col-6">
+                  <label for="newDecisionDate"><b>تاريخ الإقرار</b></label>
+                  <input type="date" id="newDecisionDate" name="newDecisionDate" placeholder="أدخل تاريخ القرار"
+                    required>
+                </div>
+
+              </div>
+
+              <div class="row ">
+                <div class="col-12">
+                  <label for="newDecisionDetails"><b>تفاصيل القرار</b></label>
+                  <textarea class="form-control" id="newDecisionDetails" name="newDecisionDetails" rows="5"
+                    style="max-height:12em;" required></textarea>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="modal-footer " style="width:auto;">
+            <button type="submit" class="operations-btn btn btn-success" onclick="addNewDecision()">
+              <span data-feather="plus" class="align-text-bottom"></span>
+              إضافة قرار
+            </button>
+            <button type="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+              <span data-feather="x" class="align-text-bottom"></span>
+              أغلق
+            </button>
+            <br>
+            <div id="errorAddDecision" class="error">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!--popup edit decision-->
+  <div class="modal fade" id="editDecisionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="editDecisionBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="height: fit-content; ">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: rgb(87, 126, 155);">
+          <h1 class="modal-title fs-5" id="editDecisionBackdropLabel" style=" color:white;">
+            تعديل القرار
+          </h1>
+        </div>
+        <form id='editDecision_form' method="post" style="background-color: transparent; border:none">
+          <div class=" modal-body" style="">
+            <div class="container">
+              <div class="row ">
+                <div class="col-6">
+                  <label for="editDecisionNumber"><b>رقم القرار</b></label>
+                  <input type="number" id="editDecisionNumber" name="editDecisionNumber" placeholder="أدخل رقم القرار"
+                    required>
+                </div>
+
+                <div class="col-6">
+                  <label for="editDecisionDate"><b>تاريخ الإقرار</b></label>
+                  <input type="date" id="editDecisionDate" name="editDecisionDate" placeholder="أدخل تاريخ القرار"
+                    required>
+                </div>
+
+              </div>
+
+              <div class="row ">
+                <div class="col-12">
+                  <label for="editDecisionDetails"><b>تفاصيل القرار</b></label>
+                  <textarea class="form-control" id="editDecisionDetails" name="editDecisionDetails" rows="5"
+                    style="max-height:12em;" required></textarea>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="modal-footer " style="width:auto;">
+            <button type="submit" class="operations-btn btn btn-secondary">
+              <span data-feather="edit-2" class="align-text-bottom"></span>
+              تعديل القرار
+
+            </button>
+            <button type="reset" class="btn btn-dark" data-bs-dismiss="modal" onclick="closeModal()">
+              <span data-feather="x" class="align-text-bottom"></span>
+              أغلق
+            </button>
+            <br>
+            <div id="errorEditDecision" class="error">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
     crossorigin="anonymous"></script>
@@ -1024,6 +1166,7 @@
 
   <script src="../../js/cases/view_case.js">  </script>
   <script src="../../js/cases/viewSession.js">  </script>
+  <script src="../../js/cases/viewDecision.js">  </script>
 
   </script>
 

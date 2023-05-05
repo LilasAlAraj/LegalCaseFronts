@@ -96,14 +96,21 @@ function addClientEnemyField() {
 
     const enemyContainer = document.getElementById('clientvs2');
     const newEnemyField = document.createElement('div');
+    newEnemyField.classList.add('row');
+
     newEnemyField.id = 'clientEnemy' + clientEnemyCounter;
     newEnemyField.innerHTML = `
+    <div class = 'col-6'>
+    <label for="enemy_name-${clientEnemyCounter}"><b>اسم المدعى عليه</b></label>
+    <input type="text" class="clientEnemy_name" id="enemy_name-${clientEnemyCounter}" placeholder=" أدخل اسم المدعى عليه"
+      name="clientEnemy_names[]"  required>
+     </div>
 
-        <label for="enemy_name-${clientEnemyCounter}"><b>اسم المدعى عليه</b></label>
-        <input type="text" class="clientEnemy_name" id="enemy_name-${clientEnemyCounter}" placeholder=" أدخل اسم المدعى عليه"
-          name="clientEnemy_names[]"  required>
-        <ul class="suggestions" id="suggestions-enemy-${clientEnemyCounter}"></ul>
-         
+     <div class = 'col-6'>
+        <label for="enemy_phone-${clientEnemyCounter}"><b>رقم هاتفه إن وُجِد</b></label>
+        <input type="text" class="clientEnemy_phone" id="enemy_phone-${clientEnemyCounter}" placeholder=" أدخل رقم الهاتف"
+          name="clientEnemy_phones[]"  >
+         </div>
       `
     enemyContainer.appendChild(newEnemyField);
     clientEnemyCounter++;
@@ -126,13 +133,20 @@ function deleteClientEnemyField() {
 function addLawyerEnemyField() {
     const enemyContainer = document.getElementById('lawyervs2');
     const newEnemyField = document.createElement('div');
+    newEnemyField.classList.add('row')
     newEnemyField.id = 'lawyerEnemy' + lawyerEnemyCounter;
     newEnemyField.innerHTML = `
 
-  
+  <div class = 'col-6'>
   <label for="lawyerEnemy_name-${lawyerEnemyCounter}"><b>اسم الوكيل</b></label>
   <input type="text" id="lawyerEnemy_name-${lawyerEnemyCounter}" placeholder="أدخل اسم الوكيل" name="lawyerEnemy_names[]" required>
+</div>
 
+<div class = 'col-6'>
+<label for="lawyerEnemy_phone-${lawyerEnemyCounter}"><b>رقم هاتفه إن وُجِد</b></label>
+<input type="text" class="lawyerEnemy_phone" id="lawyerEnemy_phone-${lawyerEnemyCounter}" placeholder=" أدخل رقم الهاتف"
+  name="lawyerEnemy_phones[]" >
+ </div>
       `
     enemyContainer.appendChild(newEnemyField);
     lawyerEnemyCounter++;
@@ -221,7 +235,9 @@ function collectData() {
     base_Numbers = document.getElementsByName('base-number[]');
     year_ = document.getElementsByName('year[]');
     Defendent_Clients = document.getElementsByName('clientEnemy_names[]');
+    Defendent_Clients_Phones = document.getElementsByName('clientEnemy_phones[]');
     Defendent_Lawyers = document.getElementsByName('lawyerEnemy_names[]');
+    Defendent_Lawyers_Phones = document.getElementsByName('lawyerEnemy_phones[]');
     Plaintaiff_Clients = document.getElementsByName('client_names[]');
     Plaintaiff_Lawyers = document.getElementsByName('lawyer_names[]');
 
@@ -240,28 +256,30 @@ function collectData() {
 
     DefendentClients = []
     for (var i = 0, k = 0; i < Defendent_Clients.length; i++) {
-        if (Defendent_Clients[i].value != '')
-
-            DefendentClients[k++] = (Defendent_Clients[i].value);
+        if (Defendent_Clients[i].value != '') {
+            DefendentClients[k++] = { 'name': Defendent_Clients[i].value, 'phone': Defendent_Clients_Phones[i].value };
+        }
     }
     DefendentLawyers = [];
     for (var i = 0, k = 0; i < Defendent_Lawyers.length; i++) {
-        if (Defendent_Lawyers[i].value != '')
-
-            DefendentLawyers[k++] = (Defendent_Lawyers[i].value);
+        if (Defendent_Lawyers[i].value != '') {
+            DefendentLawyers[k++] = { 'name': Defendent_Lawyers[i].value, 'phone': Defendent_Lawyers_Phones[i].value };
+        }
     }
 
     PlaintaiffClients = []
     for (var i = 0, k = 0; i < Plaintaiff_Clients.length; i++) {
-        if (Plaintaiff_Clients[i].value != '')
+        if (Plaintaiff_Clients[i].value != '') {
+            PlaintaiffClients[k++] = (Plaintaiff_Clients[i].value);
 
-            PlaintaiffClients[k++] = Plaintaiff_Clients[i].value;
+        }
     }
 
     PlaintaiffLawyers = []
     for (var i = 0, k = 0; i < Plaintaiff_Lawyers.length; i++) {
-        if (Plaintaiff_Lawyers[i].value != '')
+        if (Plaintaiff_Lawyers[i].value != '') {
             PlaintaiffLawyers[k++] = (Plaintaiff_Lawyers[i].value);
+        }
     }
 
     case_title = document.getElementById('case_tiltle').value;
@@ -278,6 +296,7 @@ function collectData() {
     data["baseNumbers"] = baseNumbers;
     data["years"] = years;
 
+    console.log(data)
     return data;
 
 

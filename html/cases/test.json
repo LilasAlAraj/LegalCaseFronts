@@ -3,6 +3,7 @@
     "id": 859,
     "case_title": "قضية الإيقاف",
     "date": "2022-05-20",
+    "isArchived":"true",
     "plaintiff_names": [
       "سارة علي",
       "يارا علي"
@@ -39,16 +40,25 @@
         ]
       }
     ],
-    "decision": [
+    "decisions": [
       {
         "id": 123,
+        "number": "20214",
         "date": "2022-05-25",
         "details": "القرار الخاص بالمحكمة وقد صدر وأفهم علناً"
       },
       {
         "id": 124,
+        "number": "35714",
         "date": "2022-06-25",
         "details": "القرار الخاص بالمحكمة وقد صدر وأفهم علناً غير قابل للطعن"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 2,
+        "type": "photo",
+        "details": "pla pla pla"
       }
     ]
   }

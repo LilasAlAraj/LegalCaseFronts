@@ -1,4 +1,4 @@
-let role = 3;
+let role = 1;
 (() => {
     'use strict'
 
@@ -33,26 +33,11 @@ function updateTime() {
 }
 
 setInterval(updateTime, 1000);
-
 /********************* */
-
-
 function setAuth() {
-    addNewCaseBtnDiv = document.getElementById('addNewCaseButton');
-    if (role == 1 || role == 2) {
-        addNewCaseBtnDiv.innerHTML =
-            '<button type="button" id="add-cases-button" class="operations-btn btn"'
-            + 'onclick="add_cases()">'
-            + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
-            + ' إضافة قضية جديدة'
 
-            + '</button>'
-    }
 }
 
-function add_cases() {
-    window.location.href = "add.html";
-}
 
 let data;
 let currentData;
@@ -378,22 +363,14 @@ function updatePagination(data) {
 
 
     }
-
-
-
-
     // إضافة زر next
 
 
     const nextLi = document.createElement('li');
     nextLi.classList.add('page-item');
 
-
-
     const nextLiChild = document.createElement('a');
     nextLiChild.classList.add('page-link');
-
-
 
     nextLiChild.onclick = function () {
         if (currentPageGlobally < totalPages) {
@@ -454,8 +431,6 @@ function showPage(pageNumber, data) {
                 plaintiff_names += "\n____________\n";
         }
 
-
-
         var plaintiff_lawyers = '';
         for (var j = 0; j < case_.plaintiff_lawyers.length; j++) {
             plaintiff_lawyers += case_.plaintiff_lawyers[j];
@@ -469,14 +444,12 @@ function showPage(pageNumber, data) {
                 defendant_names += "\n____________\n";
         }
 
-
         var defendant_lawyers = '';
         for (var j = 0; j < case_.defendant_lawyers.length; j++) {
             defendant_lawyers += case_.defendant_lawyers[j];
             if (j !== case_.defendant_lawyers.length - 1)
                 defendant_lawyers += "\n____________\n";
         }
-
 
 
         const operations = document.createElement('div');
@@ -509,27 +482,16 @@ function showPage(pageNumber, data) {
 
         const archiveBtn = document.createElement('button');
         archiveBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive align-text-bottom" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>'
-            + ' نقل القضية إلى الأرشيف'
-        archiveBtn.setAttribute('title', 'نقل القضية إلى الأرشيف');
+            + ' إزالة القضية من الأرشيف'
+        archiveBtn.setAttribute('title', 'إزالة القضية من الأرشيف');
         archiveBtn.classList.add('btn', 'btn-warning', 'menu-operations-btn');
         archiveBtn.onclick = function () {
-            archiveCase(case_.id)
+            confirmArchiveCase(case_.id)
         }
         const archOpLi = document.createElement('li');
         archOpLi.append(archiveBtn);
         archOpLi.classList = 'operationMenuItem'
 
-        const changeStateBtn = document.createElement('button');
-        changeStateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3 align-text-bottom" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>'
-            + ' تغيير حالة القضية'
-        changeStateBtn.setAttribute('title', 'تغيير حالة القضية');
-        changeStateBtn.classList.add('btn', 'btn-secondary', 'menu-operations-btn');
-        changeStateBtn.onclick = function () {
-            changeStateCase(case_.id)
-        }
-        const ChngStOpLi = document.createElement('li');
-        ChngStOpLi.append(changeStateBtn);
-        ChngStOpLi.classList = 'operationMenuItem'
 
         const deleteBtn = document.createElement('button');
         deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
@@ -537,14 +499,13 @@ function showPage(pageNumber, data) {
         deleteBtn.setAttribute('title', 'مسح القضية');
         deleteBtn.classList.add('btn', 'btn-danger', 'menu-operations-btn');
         deleteBtn.onclick = function () {
-            deleteCase(case_.id)
+            confirmDeleteCase(case_.id)
         }
         const delOpLi = document.createElement('li');
         delOpLi.append(deleteBtn)
         delOpLi.classList = 'operationMenuItem'
-
         if (role == 1 || role == 2)
-            operationMenu.append(viewOpLi, archOpLi, ChngStOpLi, delOpLi);
+            operationMenu.append(viewOpLi, archOpLi, delOpLi);
         else
             operationMenu.append(viewOpLi);
 
@@ -598,11 +559,16 @@ function viewCase(caseId) {
 
 }
 
+function confirmDeleteCase(caseId) {
+    $('#deleteCaseBackdrop').modal('show');
+    $('#deleteCaseBackdrop').css('background', 'rgba(0,0,0,.3)');
+    document.getElementById('deleteArchivedCaseBtn').onclick = function () {
+        deleteCase(caseId);
+    }
+}
 function deleteCase(caseId) {
     var confirmation = confirm("هل أنت متأكد من حذف هذا العنصر؟");
     if (confirmation) {
-
-
         $.ajax({
             url: "delete.php", // اسم ملف php الذي يقوم بالحذف
             method: "POST", // طريقة الإرسال POST
@@ -611,7 +577,6 @@ function deleteCase(caseId) {
                 // احذف الصف من الجدول هنا، ويمكن استخدام المعرف المحدد لهذا الصف
                 table = document.getElementById('table-body');
                 for (var i = 0; i < rows.length; i++) {
-
                     if (rows[i].getAttribute('id') == caseId) {
                         rows[i].remove();
                     }
@@ -621,44 +586,37 @@ function deleteCase(caseId) {
                 console.log(error); // عرض الخطأ في وحدة التحكم بالمتصفح
             }
         });
-
-
-
     }
+}
 
+function confirmArchiveCase(caseId) {
+    $('#archiveCaseBackdrop').modal('show');
+    $('#archiveCaseBackdrop').css('background', 'rgba(0,0,0,.3)');
+    document.getElementById('cancelArchivingBtn').onclick = function () {
+        archiveCase(caseId);
+    }
 }
 function archiveCase(caseId) {
-    var confirmation = confirm("هل أنت متأكد من أرشفة هذه القضية؟");
-    if (confirmation) {
-        // احذف الصف من الجدول هنا، ويمكن استخدام المعرف المحدد لهذا الصف
 
-
-    }
-}
-function changeStateCase(caseId) {
-    var confirmation = confirm("هل أنت متأكد من حذف هذه القضية؟");
-
-    if (confirmation) {
-        // احذف الصف من الجدول هنا، ويمكن استخدام المعرف المحدد لهذا الصف
-    }
+    //fill with ajax request
 }
 
+function closeModal() {
+    // حذف المعلومات المخزنة في ذاكرة التخزين المؤقت للجلسة
+    sessionStorage.clear();
+    console.log('// إغلاق النافذة المنبثقة')
 
+}
 
 function reverseData() {
-
     let tempCurrentData = [];
-
     const n = currentData.length - 1;
     for (var i = n; i >= 0; i--)
         tempCurrentData[n - i] = currentData[i];
-
     currentData = tempCurrentData;
-
     currentPageGlobally = 1;
     updatePagination(currentData);
     showPage(currentPageGlobally, currentData);
-
     btn = document.getElementById('reverse-btn');
     if (btn.getAttribute('data-display') === 'asc') {
         btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw align-text-bottom" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>' + 'عرض تصاعدي'

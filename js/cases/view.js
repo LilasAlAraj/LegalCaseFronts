@@ -1,4 +1,4 @@
-let role = 3;
+let role = 1;
 (() => {
     'use strict'
 

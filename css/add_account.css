@@ -24,12 +24,30 @@ form:not(.search-options) {
     padding: auto;
 }
 
+#login-form {
+    border-radius: 6%;
+    width: fit-content;
+    margin: 0 auto;
+    text-align: right;
+    transform: translateY(7.5%);
+}
+
+#imgcontainer {
+    text-align: center;
+    position: relative;
+  }
+  
+  img#avatar {
+    width: 25%;
+    border-radius: 50%;
+  }
+
 label {
     color: rgb(7, 48, 78);
 }
 
 select,
-input:not(input[type="radio"]) {
+input:not(input[type="radio"], input[type='checkbox']) {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -90,13 +108,14 @@ button:hover {
 
 /* ستايل لزر العرض */
 #show-password-btn {
-    margin-left: 10px;
     background-color: transparent;
-    color: #666;
+    color: #ffffff;
     border: none;
-    font-size: 0.9rem;
     cursor: pointer;
-    outline: none;
+    background-color: rgb(7, 48, 78);
+    width: 100%;
+    transform: translateY(8px);
+    height: 46px;
 }
 
 /* ستايل لإظهار كلمة المرور */
@@ -118,7 +137,6 @@ button:hover {
     font-size: 14px;
     margin-bottom: 10px;
 }
-
 
 /**suggestion of names************/
 

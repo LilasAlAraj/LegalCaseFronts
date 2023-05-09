@@ -32,9 +32,9 @@ $(document).ready(function () {
         required: true
       }, mother_name: {
         required: true
-      }, birthday: {
+      }, date_of_birth: {
         required: true
-      }, birth_address: {
+      }, place_of_birth: {
         required: true
       }, current_address: {
         required: true
@@ -64,9 +64,9 @@ $(document).ready(function () {
         required: "الرجاء إدخال اسم الأم",
       }, father_name: {
         required: "الرجاء إدخال اسم الأب",
-      }, birthday: {
+      }, date_of_birth: {
         required: "الرجاء اختيار تاريخ الولادة",
-      }, birth_address: {
+      }, place_of_birth: {
         required: "الرجاء اختيار مكان الولادة",
       }, current_address: {
         required: "الرجاء إدخال العنوان الحالي",
@@ -95,8 +95,8 @@ $(document).ready(function () {
       var mother_name = $('#mother_name').val();
       var phone = $('#phone').val();
       var current_address = $('#current_address').val();
-      var birth_address = $('#birth_address').val();
-      var birthday = $('#birthday').val();
+      var place_of_birth = $('#place_of_birth').val();
+      var date_of_birth = $('#date_of_birth').val();
       var email = $('email').val();
       var password = $('#password').val();
       var confirm_password = $('#confirm_password').val();
@@ -131,12 +131,12 @@ $(document).ready(function () {
               "mother_name": mother_name,
               "phone": phone,
               "current_address": current_address,
-              'birthday': birthday,
-              'birth_address': birth_address,
+              'date_of_birth': date_of_birth,
+              'place_of_birth': place_of_birth,
               "email": email,
               "password": password,
               "confirm_password": confirm_password,
-              "rule": "client"
+              "rule": rule
             },
             success: function (response) {
               if (response.status == 'success') {

@@ -1,3 +1,7 @@
+
+h2 {
+  color: rgb(87, 126, 155);
+}
 body {
  /* background-color: #f2f2f2;*/
 
@@ -48,4 +52,10 @@ tr.clickable-row:hover td{
 
 table{
   background-color: white;
+}
+
+label{
+  color: rgb(7, 48, 78);
+  font-size:medium;
+  font-weight: bolder
 }

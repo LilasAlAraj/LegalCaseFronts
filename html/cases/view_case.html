@@ -61,11 +61,11 @@
       <div class="row">
 
 
-        <nav id="sidebarMenu" class=" col-md-3 col-lg-2 col-sm-12 d-md-block  sidebar collapse">
-          <div class="position-sticky pt-3  sidebar-sticky">
-            <ul class="nav flex-column ">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 col-sm-12 d-md-block  sidebar collapse">
+          <div class="position-sticky pt-3  sidebar-sticky ">
+            <ul class=" nav nav-pills flex-column mb-auto ">
               <li class="mb-1 nav-item">
-                <a class="nav-link " aria-current="page" href="../../html/dashboard.html">
+                <a class="nav-link " aria-current="page" href="../dashboard.html">
                   <span data-feather="home" class="align-text-bottom"></span>
                   لوحة القيادة
                 </a>
@@ -75,95 +75,56 @@
                   data-bs-toggle="collapse" data-bs-target="#cases-collapse" aria-expanded="false">
                   <span data-feather="file" class="align-text-bottom"></span>
                   القضايا
-
                 </button>
 
                 <div class="collapse collapse-items" id="cases-collapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                    <li> <a href="../../html/cases/add.html" class="nav-link d-inline-flex collapse-items">
-                        <span data-feather="file-plus" class="align-text-bottom"></span>
+                    <li id="addNewCaseNav">
 
-                        إضافة قضية جديدة
-
-                      </a></li>
-                    <li><a href="../cases/view.html" class="nav-link d-inline-flex  collapse-items">
+                    </li>
+                    <li id="viewCaseNav">
+                      <a href="../cases/view.html" class="nav-link d-inline-flex  collapse-items">
                         <span data-feather="file-text" class="align-text-bottom"></span>
                         عرض القضايا
-                      </a></li>
-                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
-                        <span data-feather="search" class="align-text-bottom"></span>
+                      </a>
+                    </li>
+                    <li id="retreiveCaseNav">
 
-                        استرجاع القضايا المشابهة
+                    </li>
+                    <li id="archiveCaseNav">
 
-                      </a></li>
-                    <li><a href="../cases/archive.html" class="nav-link d-inline-flex  collapse-items">
-                        <span data-feather="archive" class="align-text-bottom"></span>
-                        أرشيف القضايا
-                      </a></li>
+                    </li>
+                  </ul>
                 </div>
               </li>
 
-            <li class="mb-1 nav-item ">
-              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                data-bs-toggle="collapse" data-bs-target="#task-collapse" aria-expanded="false">
-                <span data-feather="pen-tool" class="align-text-bottom"></span>
-                المهام
-
-              </button>
-
-              <div class="collapse" id="task-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li><a href="../tasks/add.html" class="nav-link d-inline-flex  collapse-items">
-                      <span data-feather="plus-circle" class="align-text-bottom"></span>
-                      إضافة مهمة جديدة
-                    </a></li>
-                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
-                      <span data-feather="watch" class="align-text-bottom"></span>
-                      عرض المهام
-                    </a></li>
-
+              <div id="tasksLi">
               </div>
-            </li>
+
+              <div id="clientsLi">
+              </div>
+
+              <div id="membersLi">
+              </div>
+
               <li class="mb-1 nav-item ">
                 <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                  data-bs-toggle="collapse" data-bs-target="#customers-collapse" aria-expanded="false">
-                  <span data-feather="users" class="align-text-bottom"></span>
-                  العملاء
-                </button>
-                <div class="collapse" id="customers-collapse">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                    <li><a href="../users/add_client.html" class="nav-link d-inline-flex  collapse-items">
-
-                        <span data-feather="user-plus" class="align-text-bottom"></span>
-                        إضافة عميل جديد
-
-                      </a></li>
-                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
-                        <span data-feather="user-check" class="align-text-bottom"></span>
-                        عرض العملاء
-                      </a></li>
-
-                </div>
-              </li>
-              <li class="mb-1 nav-item active">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                  data-bs-toggle="collapse" data-bs-target="#team-collapse" aria-expanded="false">
-                  <span data-feather="user" class="align-text-bottom"></span>
-                  أفراد المكتب
+                  data-bs-toggle="collapse" data-bs-target="#settings-collapse" aria-expanded="false">
+                  <span data-feather="settings" class="align-text-bottom"></span>
+                  الإعدادات
                 </button>
 
-                <div class="collapse" id="team-collapse">
+                <div class="collapse" id="settings-collapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                    <li><a href="../users/add_member.html" class="nav-link d-inline-flex  collapse-items">
+                    <li id="courtSettingsNav">
+                    </li>
 
-                        <span data-feather="user-plus" class="align-text-bottom"></span>
-                        إضافة فرد جديد
-
-                      </a></li>
-                    <li><a href="#" class="nav-link d-inline-flex  collapse-items">
-                        <span data-feather="user-check" class="align-text-bottom"></span>
-                        عرض الأفراد
-                      </a></li>
+                    <li><a href="../users/account_settings.html" class="nav-link d-inline-flex  collapse-items">
+                        <span data-feather="tool" class="align-text-bottom"></span>
+                        إعدادات حسابي
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </li>
             </ul>
@@ -249,120 +210,121 @@
 
                   </div>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                      تفاصيل إضافية
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
-                    data-bs-parent="#myAccordion">
-                    <div class="accordion-body container" id="additional_details">
-                      <div class="container">
-                        <div class="container" id="dawa">
-                          <b>الدعوى: </b>
-                        </div>
-
-                        <div class="container" id="waqae">
-                          <b>الوقائع: </b>
-                        </div>
-                        <div class="container" id="eltemas">
-                          <b>الالتماس: </b>
-                        </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    تفاصيل إضافية
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                  data-bs-parent="#myAccordion">
+                  <div class="accordion-body container" id="additional_details">
+                    <div class="container">
+                      <div class="container" id="dawa">
+                        <b>الدعوى: </b>
                       </div>
 
-
+                      <div class="container" id="waqae">
+                        <b>الوقائع: </b>
+                      </div>
+                      <div class="container" id="eltemas">
+                        <b>الالتماس: </b>
+                      </div>
                     </div>
+
+
                   </div>
                 </div>
+              </div>
 
 
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      جلسات القضية
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo"
-                    data-bs-parent="#myAccordion">
-                    <div class="accordion-body container" id="sessions">
-                      <table class="table table-bordered table-striped table-hover">
-                        <thead>
-                          <tr>
-                            <th>رقم الجلسة</th>
-                            <th>التاريخ</th>
-                            <th>التفاصيل</th>
-                            <th>العمليات</th>
-                          </tr>
-                        </thead>
-                        <tbody id="sessions-table-body">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    جلسات القضية
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo"
+                  data-bs-parent="#myAccordion">
+                  <div class="accordion-body container" id="sessions">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>رقم الجلسة</th>
+                          <th>التاريخ</th>
+                          <th>التفاصيل</th>
+                          <th>العمليات</th>
+                        </tr>
+                      </thead>
+                      <tbody id="sessions-table-body">
 
-                        </tbody>
-                      </table>
+                      </tbody>
+                    </table>
 
-                    </div>
                   </div>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      مرفقات القضية
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                    data-bs-parent="#myAccordion">
-                    <div class="accordion-body container" id="attachments">
-                      <table class="table table-bordered table-striped table-hover">
-                        <thead>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    مرفقات القضية
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                  data-bs-parent="#myAccordion">
+                  <div class="accordion-body container" id="attachments">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead>
 
-                          <tr>
-                            <th>رقم المرفق</th>
-                            <th>النوع</th>
-                            <th>التفاصيل</th>
-                            <th>العمليات</th>
-                          </tr>
-                        </thead>
-                        <tbody id='attachment-case-table-body'>
+                        <tr>
+                          <th>رقم المرفق</th>
+                          <th>النوع</th>
+                          <th>التفاصيل</th>
+                          <th>العمليات</th>
+                        </tr>
+                      </thead>
+                      <tbody id='attachment-case-table-body'>
 
-                        </tbody>
-                      </table>
+                      </tbody>
+                    </table>
 
-                    </div>
                   </div>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                      القرارات
-                    </button>
-                  </h2>
-                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                    data-bs-parent="#myAccordion">
-                    <div class="accordion-body container" id="decisions">
-                      <table class="table table-bordered table-striped table-hover">
-                        <thead>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    القرارات
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                  data-bs-parent="#myAccordion">
+                  <div class="accordion-body container" id="decisions">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead>
 
-                          <tr>
-                            <th>رقم القرار</th>
-                            <th>التاريخ</th>
-                            <th>التفاصيل</th>
-                            <th>العمليات</th>
-                          </tr>
-                        </thead>
-                        <tbody id="decision-table-body">
+                        <tr>
+                          <th>رقم القرار</th>
+                          <th>التاريخ</th>
+                          <th>التفاصيل</th>
+                          <th>العمليات</th>
+                        </tr>
+                      </thead>
+                      <tbody id="decision-table-body">
 
-                        </tbody>
-                      </table>
+                      </tbody>
+                    </table>
 
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </main>
       </div>
     </div>
@@ -484,7 +446,7 @@
 
 
         <form id='addNewSession_form' method="post" style="background-color: transparent; border:none">
-          <div class=" modal-body" style="">
+          <div class=" modal-body">
             <div class="container">
               <div class="row ">
                 <div class="col-6">
@@ -550,7 +512,7 @@
           </h1>
         </div>
         <form id='addNewAttachment_form' method="post" style="background-color: transparent; border:none">
-          <div class=" modal-body" style="">
+          <div class=" modal-body">
             <div class="container">
               <div class="row ">
                 <div class="col-12">
@@ -603,7 +565,7 @@
             تأكيد عملية الأرشفة
           </h1>
         </div>
-        <div class=" modal-body" style="">
+        <div class=" modal-body">
           <p>
             هل أنت متأكد من أرشفة هذه القضية؟
           </p>
@@ -635,7 +597,7 @@
             تأكيد عملية الحذف
           </h1>
         </div>
-        <div class=" modal-body" style="">
+        <div class=" modal-body">
           <p>
             هل أنت متأكد من حذف هذه القضية؟
           </p>
@@ -667,7 +629,7 @@
             تأكيد عملية التعديل
           </h1>
         </div>
-        <div class=" modal-body" style="">
+        <div class=" modal-body">
           <p>
             هل أنت متأكد من تعديل هذه القضية؟
           </p>
@@ -689,7 +651,7 @@
   </div>
 
 
-  <!--popup view session-->
+  <!--popup view decision-->
   <div class="modal fade" id="viewDecicionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="viewDecicionBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable"
@@ -751,7 +713,7 @@
             عرض الجلسة
           </h1>
         </div>
-        <div class=" modal-body" style="">
+        <div class=" modal-body">
 
           <div class="container">
             <div>
@@ -824,7 +786,7 @@
             تأكيد عملية الحذف
           </h1>
         </div>
-        <div class=" modal-body" style="">
+        <div class=" modal-body">
           <p>
             هل أنت متأكد من حذف هذه الجلسة؟
           </p>
@@ -856,7 +818,7 @@
           </h1>
         </div>
         <form id='addNewSessionAttachment_form' method="post" style="background-color: transparent; border:none">
-          <div class=" modal-body" style="">
+          <div class=" modal-body">
             <div class="container">
               <div class="row ">
                 <div class="col-12">
@@ -913,7 +875,7 @@
 
 
         <form id='editSession_form' method="post" style="background-color: transparent; border:none">
-          <div class=" modal-body" style="">
+          <div class=" modal-body">
             <div class="container">
               <div class="row ">
                 <div class="col-6">
@@ -969,7 +931,7 @@
             تأكيد عملية الحذف
           </h1>
         </div>
-        <div class=" modal-body" style="">
+        <div class=" modal-body">
           <p>
             هل أنت متأكد من حذف هذا المرفق؟
           </p>
@@ -999,7 +961,7 @@
             تأكيد عملية الحذف
           </h1>
         </div>
-        <div class=" modal-body" style="">
+        <div class=" modal-body">
           <p>
             هل أنت متأكد من حذف هذا القرار؟
           </p>
@@ -1019,7 +981,7 @@
     </div>
   </div>
 
-  
+
   <!--popup add new decision-->
   <div class="modal fade" id="addNewDecisionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="addNewDecisionBackdropLabel" aria-hidden="true">
@@ -1031,7 +993,7 @@
           </h1>
         </div>
         <form id='addNewDecision_form' method="post" style="background-color: transparent; border:none">
-          <div class=" modal-body" style="">
+          <div class=" modal-body">
             <div class="container">
               <div class="row ">
                 <div class="col-6">
@@ -1088,7 +1050,7 @@
           </h1>
         </div>
         <form id='editDecision_form' method="post" style="background-color: transparent; border:none">
-          <div class=" modal-body" style="">
+          <div class=" modal-body">
             <div class="container">
               <div class="row ">
                 <div class="col-6">
@@ -1137,12 +1099,13 @@
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
     crossorigin="anonymous"></script>
 
-
+  <script src="../../js/users/auth.js"></script>
+  <script src="../../js/navs.js"></script>
   <script src="../../js/cases/view_case.js">  </script>
   <script src="../../js/cases/viewSession.js">  </script>
   <script src="../../js/cases/viewDecision.js">  </script>
 
-  </script>
+
 
 
 

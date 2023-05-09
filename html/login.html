@@ -43,26 +43,26 @@
           <div class="col-12">
             <label for="password" style="font-size:medium;"><b>كلمة المرور</b></label>
           </div>
-          <div class="col-11"  style="padding: 0;">
-            <input type="password" id="password" placeholder="أدخل كلمة المرور" name="password" required>
-          </div>
+
           <div class="col-1" style="padding: 0;">
-            <button type="button" id="show-password-btn"  >
-              <span data-feather="eye" class="align-text-bottom" ></span>
+            <button type="button" id="show-password-btn">
+              <span data-feather="eye" class="align-text-bottom"></span>
             </button>
+          </div>
+          <div class="col-11" style="padding: 0;">
+            <input type="password" id="password" placeholder="أدخل كلمة المرور" name="password" required>
           </div>
         </div>
         <div class="row">
           <div class="form-check">
-            <label style="font-weight: bold;color: rgb(7, 48, 78); ">
+            <label style="font-size:medium; font-weight: bolder; color: rgb(7, 48, 78); ">
               تذكرني
             </label>
             <input id="remember_me" type="checkbox" name="remember">
           </div>
         </div>
         <div class="row d-flex justify-content-center">
-          <button type="submit" class="btn operations-btn"
-            style="background-color: rgb(87, 126, 155);">
+          <button type="submit" class="btn operations-btn" style="background-color: rgb(87, 126, 155);">
             تسجيل الدخول
           </button>
         </div>
@@ -70,7 +70,7 @@
       </div>
 
       <div class="row d-flex justify-content-center">
-        <a href="#" class="forget_password">هل نسيت كلمة المرور؟</a>
+        <a href="#" id="forget_password">هل نسيت كلمة المرور؟</a>
       </div>
 
       <div id="error" class="error">

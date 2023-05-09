@@ -58,10 +58,10 @@
 
 
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 col-sm-12 d-md-block  sidebar collapse">
-        <div class="position-sticky pt-3  sidebar-sticky">
-          <ul class="nav flex-column ">
+        <div class="position-sticky pt-3  sidebar-sticky ">
+          <ul class=" nav nav-pills flex-column mb-auto ">
             <li class="mb-1 nav-item">
-              <a class="nav-link " aria-current="page" href="../../html/dashboard.html">
+              <a class="nav-link " aria-current="page" href="../dashboard.html">
                 <span data-feather="home" class="align-text-bottom"></span>
                 لوحة القيادة
               </a>
@@ -71,105 +71,58 @@
                 data-bs-toggle="collapse" data-bs-target="#cases-collapse" aria-expanded="false">
                 <span data-feather="file" class="align-text-bottom"></span>
                 القضايا
-
               </button>
 
               <div class="collapse collapse-items" id="cases-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li> <a href="../../html/cases/add.html" class="nav-link d-inline-flex collapse-items">
-                      <span data-feather="file-plus" class="align-text-bottom"></span>
+                  <li id="addNewCaseNav">
 
-                      إضافة قضية جديدة
-
-                    </a></li>
-                  <li><a href="../../html/cases/view.html" class="nav-link d-inline-flex  collapse-items">
+                  </li>
+                  <li id="viewCaseNav">
+                    <a href="../cases/view.html" class="nav-link d-inline-flex  collapse-items">
                       <span data-feather="file-text" class="align-text-bottom"></span>
                       عرض القضايا
-                    </a></li>
-                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
-                      <span data-feather="search" class="align-text-bottom"></span>
+                    </a>
+                  </li>
+                  <li id="retreiveCaseNav">
 
-                      استرجاع القضايا المشابهة
+                  </li>
+                  <li id="archiveCaseNav">
 
-                    </a></li>
-                  <li><a href="../cases/archive.html" class="nav-link d-inline-flex  collapse-items">
-                      <span data-feather="archive" class="align-text-bottom"></span>
-                      أرشيف القضايا
-                    </a></li>
+                  </li>
+                </ul>
               </div>
             </li>
 
-            
+            <div id="tasksLi">
+            </div>
 
+            <div id="clientsLi">
+            </div>
+
+            <div id="membersLi">
+            </div>
 
             <li class="mb-1 nav-item ">
               <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                data-bs-toggle="collapse" data-bs-target="#task-collapse" aria-expanded="false">
-                <span data-feather="pen-tool" class="align-text-bottom"></span>
-                المهام
-
+                data-bs-toggle="collapse" data-bs-target="#settings-collapse" aria-expanded="false">
+                <span data-feather="settings" class="align-text-bottom"></span>
+                الإعدادات
               </button>
 
-              <div class="collapse" id="task-collapse">
+              <div class="collapse" id="settings-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li><a href="../tasks/add.html" class="nav-link d-inline-flex  collapse-items">
-                      <span data-feather="plus-circle" class="align-text-bottom"></span>
-                      إضافة مهمة جديدة
-                    </a></li>
-                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
-                      <span data-feather="watch" class="align-text-bottom"></span>
-                      عرض المهام
-                    </a></li>
+                  <li id="courtSettingsNav">
+                  </li>
 
+                  <li><a href="../users/account_settings.html" class="nav-link d-inline-flex  collapse-items">
+                      <span data-feather="tool" class="align-text-bottom"></span>
+                      إعدادات حسابي
+                    </a>
+                  </li>
+                </ul>
               </div>
             </li>
-
-            <li class="mb-1 nav-item ">
-              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                data-bs-toggle="collapse" data-bs-target="#customers-collapse" aria-expanded="false">
-                <span data-feather="users" class="align-text-bottom"></span>
-                العملاء
-
-              </button>
-
-              <div class="collapse" id="customers-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li><a href="../users/add_client.html" class="nav-link d-inline-flex  collapse-items">
-
-                      <span data-feather="user-plus" class="align-text-bottom"></span>
-                      إضافة عميل جديد
-
-                    </a></li>
-                  <li><a href="" class="nav-link d-inline-flex  collapse-items">
-                      <span data-feather="user-check" class="align-text-bottom"></span>
-                      عرض العملاء
-                    </a></li>
-
-              </div>
-            </li>
-
-            <li class="mb-1 nav-item active">
-              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                data-bs-toggle="collapse" data-bs-target="#team-collapse" aria-expanded="false">
-                <span data-feather="user" class="align-text-bottom"></span>
-                أفراد المكتب
-              </button>
-
-              <div class="collapse" id="team-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
-                  <li><a href="../users/add_member.html" class="nav-link d-inline-flex  collapse-items">
-
-                      <span data-feather="user-plus" class="align-text-bottom"></span>
-                      إضافة فرد جديد
-
-                    </a></li>
-                  <li><a href="#" class="nav-link d-inline-flex  collapse-items">
-                      <span data-feather="user-check" class="align-text-bottom"></span>
-                      عرض الأفراد
-                    </a></li>
-              </div>
-            </li>
-
           </ul>
         </div>
       </nav>
@@ -344,7 +297,8 @@
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
     crossorigin="anonymous"></script>
 
-
+  <script src="../../js/users/auth.js"></script>
+  <script src="../../js/navs.js"></script>
   <script src="../../js/cases/add.js"></script>
   <script src="../../js/cases/caseSet.js"></script>
 

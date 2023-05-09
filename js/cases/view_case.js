@@ -4,19 +4,10 @@
     feather.replace({ 'aria-hidden': 'true' })
 
 })();
-//////////////////////الوقت
-function updateTime() {
-    var now = new Date();
-    // jQuery('#time').val(now.toString());   
-    document.getElementById("time").innerHTML = now.toString();
-}
-
-setInterval(updateTime, 1000);
 
 /********************* */
 
 let data, caseItem;
-let rule = 1; //1->admin , 2->secretaria, 3->lawyer, 4->client
 
 
 
@@ -241,8 +232,8 @@ function addSessionRow(table, session) {
     viewOpLi.classList = 'operationMenuItem'
     operationMenu.append(viewOpLi)
 
-    if (rule == 1 || rule == 2) {
-        if (!caseItem.isArchived) {
+    if (role == 1 || role == 2) {
+        if (caseItem.isArchived!=='true') {
 
 
             const deleteBtn = document.createElement('button');
@@ -252,9 +243,16 @@ function addSessionRow(table, session) {
             deleteBtn.classList.add('btn', 'btn-danger', 'menu-operations-btn');
             deleteBtn.setAttribute("data-bs-toggle", "modal")
             deleteBtn.setAttribute("data-bs-target", "#deleteSessionBackdrop")
-            document.getElementById('deleteSessionButton').onclick = function () {
-                deleteSession(sessionID)
+
+            deleteBtn.setAttribute('data-session-id', sessionID)
+            deleteBtn.onclick = function () {
+                $('#deleteSessionBackdrop').data('session-id', deleteBtn.getAttribute('data-session-id'));
+                document.getElementById('deleteSessionButton').onclick = function () {
+                    deleteSession()
+                }
+        
             }
+
 
 
 
@@ -323,8 +321,8 @@ function addAttachmentRow(table, attachment) {
     operationMenu.classList.add('dropdown-menu');
     operationMenu.append(downloadOpLi)
 
-    if (rule == 1 || rule == 2) {
-        if (!caseItem.isArchived) {
+    if (role == 1 || role == 2) {
+        if (caseItem.isArchived!=='true') {
 
             const deleteBtn = document.createElement('button');
             deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
@@ -333,11 +331,14 @@ function addAttachmentRow(table, attachment) {
             deleteBtn.classList.add('btn', 'btn-danger', 'menu-operations-btn');
             deleteBtn.setAttribute("data-bs-toggle", "modal")
             deleteBtn.setAttribute("data-bs-target", "#deleteCaseAttachmentBackdrop")
-            document.getElementById('deleteAttachmentButton').onclick = function () {
-                deleteAttachmentOfCase(attachmentID)
+            deleteBtn.setAttribute('data-attachment-id', attachmentID)
+            deleteBtn.onclick = function () {
+                $('#deleteCaseAttachmentBackdrop').data('attachment-id', deleteBtn.getAttribute('data-attachment-id'));
+                document.getElementById('deleteAttachmentButton').onclick = function () {
+                    deleteAttachmentOfCase()
+                }
+        
             }
-
-
 
             const delOpLi = document.createElement('li');
             delOpLi.append(deleteBtn)
@@ -359,12 +360,16 @@ function addAttachmentRow(table, attachment) {
 
 
 function downloadAttachmentOfCase(attID) {
+    attID = $('#deleteCaseAttachmentBackdrop').data('attachment-id');
+
     console.log('downloadAttachmentOfCase' + attID)
 
 
 }
 
-function deleteAttachmentOfCase(attID) {
+function deleteAttachmentOfCase() {
+    attID = $('#deleteCaseAttachmentBackdrop').data('attachment-id');
+
     console.log('deleteAttachmentOfCase' + attID)
 
 }
@@ -372,14 +377,14 @@ function setCaseAuth() {
 
 
 
-    if (rule != 1 && rule != 2) {
+    if (role != 1 && role != 2) {
     }
     else {
 
 
         case_operation = document.createElement('div');
         case_operation.classList.add('container')
-        if (!caseItem.isArchived) {
+        if (caseItem.isArchived!=='true') {
 
             const edit_btn = document.createElement('button')
             edit_btn.type = "button"
@@ -410,7 +415,7 @@ function setCaseAuth() {
         archive_btn.setAttribute("data-bs-toggle", "modal")
         archive_btn.setAttribute("data-bs-target", "#archiveCaseBackdrop");
 
-        if (caseItem.isArchived) {//القضية مؤرشفة
+        if (caseItem.isArchived==='true') {//القضية مؤرشفة
             archive_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive align-text-bottom" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>'
                 + ' إلغاء أرشفة القضية'
         } else { //القضية غير مؤرشفة
@@ -425,7 +430,7 @@ function setCaseAuth() {
 
 
         //لا يتم تغيير أي حالة مادام القضية مؤرشفة
-        if (!caseItem.isArchived) {
+        if (caseItem.isArchived!=='true') {
 
             edit_state_btn = document.createElement('button')
             edit_state_btn.type = "button"
@@ -440,7 +445,7 @@ function setCaseAuth() {
 
 
 
-        if (!caseItem.isArchived) {
+        if (caseItem.isArchived!=='true') {
 
 
             edit_additional_details = document.createElement('div');
@@ -454,7 +459,7 @@ function setCaseAuth() {
             document.getElementById('additional_details').append(edit_additional_details)
         }
 
-        if (!caseItem.isArchived) {
+        if (caseItem.isArchived!=='true') {
 
             sessions = document.createElement('div');
             sessions.classList.add('container');
@@ -466,7 +471,7 @@ function setCaseAuth() {
             document.getElementById('sessions').append(sessions)
         }
 
-        if (!caseItem.isArchived) {
+        if (caseItem.isArchived!=='true') {
 
             attachments = document.createElement('div');
             attachments.classList.add('container');
@@ -478,7 +483,7 @@ function setCaseAuth() {
                 + '</button>'
             document.getElementById('attachments').append(attachments)
         }
-        if (!caseItem.isArchived) {
+        if (caseItem.isArchived!=='true') {
 
             decisions = document.createElement('div');
             decisions.classList.add('container');

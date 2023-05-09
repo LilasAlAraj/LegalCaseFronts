@@ -8,21 +8,15 @@
 })()
 
 //////////////////////الوقت
-function updateTime() {
-  var now = new Date();
- // jQuery('#time').val(now.toString());   
-  document.getElementById("time").innerHTML=now.toString();
-}
-
-setInterval(updateTime, 1000);
 
 /*************************** */
 var casesValues = []
-var types = ['قضايا رابحة', 'قضايا خاسرة', 'قضايا جارٍ العمل عليها'];
+var types = ['قضايا رابحة', 'قضايا خاسرة', 'قضايا جارٍ العمل عليها', 'قضايا معلقة'];
 var barColors = [
   "#52b462",
   "#b45d52",
-  "#52a0b4"
+  "#52a0b4",
+  "#1b1b1b"
   
   /*,
   "#e8c3b9",
@@ -40,6 +34,8 @@ var barColors = [
 casesValues[1 - 1] = (5);
 casesValues[2 - 1] = (8);
 casesValues[3 - 1] = (09);
+casesValues[4 - 1] = (07);
+
 
 
 

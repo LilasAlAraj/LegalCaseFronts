@@ -1,11 +1,9 @@
-let role = 1;
+
 (() => {
     'use strict'
 
     feather.replace({ 'aria-hidden': 'true' })
-    fillYears()
-
-    setAuth();
+   
 
 })();
 function fillYears() {
@@ -25,14 +23,6 @@ function fillYears() {
     }
 
 }
-//////////////////////الوقت
-function updateTime() {
-    var now = new Date();
-    // jQuery('#time').val(now.toString());   
-    document.getElementById("time").innerHTML = now.toString();
-}
-
-setInterval(updateTime, 1000);
 /********************* */
 function setAuth() {
 
@@ -43,7 +33,9 @@ let data;
 let currentData;
 
 $(document).ready(function () {
+    fillYears()
 
+    setAuth();
     // جلب البيانات من ملف JSON
     $.ajax({
         url: 'test.json',

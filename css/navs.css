@@ -31,12 +31,16 @@
   /* Scrollable contents if viewport is shorter than content. */
 
 }
+.sidebar .nav-link{
+  font-size: 14px;
 
+}
 .sidebar .nav-item {
   font-weight: 500;
   color: rgb(87, 126, 155);
   margin-bottom: 5px;
   border-bottom: 1px solid rgb(87, 126, 155);
+  font-size: x-large;
 
 
 }
@@ -63,6 +67,7 @@
   color: rgb(87, 126, 155);
 
 }
+
 
 .navbar .nav-link {
   color: rgb(87, 126, 155);

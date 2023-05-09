@@ -83,15 +83,16 @@ button:hover {
     padding: 16px;
 }
 
-.forget_password {
+#forget_password {
     display: flex;
     justify-content: center;
     text-decoration-line: none;
     font-weight: bolder;
     color: rgb(87, 126, 155);
+    width: fit-content;
 }
 
-.forget_password:hover {
+#forget_password:hover {
     color: rgb(7, 48, 78);
 
 
@@ -107,6 +108,9 @@ button:hover {
 }
 
 /* ستايل لزر العرض */
+#show-confirm_new_password-btn,
+#show-new_password-btn,
+#show-current_password-btn,
 #show-password-btn {
     background-color: transparent;
     color: #ffffff;
@@ -242,7 +246,8 @@ tr.clickable-row:hover th,
 tr.clickable-row:hover td {
     color: white
 }
-
+#add-members-button,
+#add-clients-button,
 #edit_state-button,
 #add-cases-button,
 #add-appointment-button,
@@ -315,4 +320,12 @@ tr.clickable-row:hover td {
     color: white;
     background-color: rgb(87, 126, 155);
     border-color: transparent;
+}
+
+
+
+.btn-warning,
+
+.btn-warning:hover{
+    color: white;
 }

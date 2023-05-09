@@ -1,11 +1,8 @@
-let role = 1;
 (() => {
     'use strict'
 
     feather.replace({ 'aria-hidden': 'true' })
-    fillYears()
-
-    setAuth();
+   
 
 })();
 function fillYears() {
@@ -25,14 +22,6 @@ function fillYears() {
     }
 
 }
-//////////////////////الوقت
-function updateTime() {
-    var now = new Date();
-    // jQuery('#time').val(now.toString());   
-    document.getElementById("time").innerHTML = now.toString();
-}
-
-setInterval(updateTime, 1000);
 
 /********************* */
 
@@ -58,7 +47,9 @@ let data;
 let currentData;
 
 $(document).ready(function () {
+    fillYears()
 
+    setAuth();
     // جلب البيانات من ملف JSON
     $.ajax({
         url: 'test.json',
@@ -588,6 +579,18 @@ function showPage(pageNumber, data) {
         row.attr('id', case_.id);
         $('#table-body').append(row);
 
+    }
+
+    var table = document.getElementsByClassName("table")[0];
+    if (table.rows.length == 1) {
+    
+        var headerRow = table.rows[0];
+        var numColumns = headerRow.cells.length;
+        var row = table.insertRow(1);
+        var cell = row.insertCell(0);
+        cell.colSpan = numColumns;
+        cell.innerHTML = "لا يوجد بيانات";
+        
     }
 
 }

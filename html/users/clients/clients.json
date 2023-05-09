@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "first_name": "أحمد",
+        "last_name": "المصري",
+        "father_name": "محمد",
+        "mother_name": "نادية",
+        "date_of_birth": "1985-06-15",
+        "place_of_birth": "دمشق، سوريا",
+        "phone_number": "0912345678",
+        "current_address": "شارع النيل، دمشق، سوريا",
+        "email": ""
+    },
+    {
+        "id":2,
+        "first_name": "نور",
+        "last_name": "الحلبي",
+        "father_name": "سعيد",
+        "mother_name": "جميلة",
+        "date_of_birth": "1990-04-01",
+        "place_of_birth": "حلب، سوريا",
+        "phone_number": "0934567890",
+        "current_address": "شارع الميدان، حمص، سوريا",
+        "email": "nour.alhalabi@example.com"
+    },
+    {
+        "id":3,
+        "first_name": "عبدالرحمن",
+        "last_name": "الشامي",
+        "father_name": "خالد",
+        "mother_name": "أميرة",
+        "date_of_birth": "1993-09-20",
+        "place_of_birth": "حلب، سوريا",
+        "phone_number": "0956781234",
+        "current_address": "شارع الشهباء، اللاذقية، سوريا",
+        "email": "abdulrahman.alshami@example.com"
+    },
+    {
+        "id":4,
+        "first_name": "ريم",
+        "last_name": "العربي",
+        "father_name": "محمد",
+        "mother_name": "فاطمة",
+        "date_of_birth": "1988-12-03",
+        "place_of_birth": "دمشق، سوريا",
+        "phone_number": "0965432178",
+        "current_address": "شارع الحميدية، دمشق، سوريا",
+        "email": "reem.alarabi@example.com"
+    }
+]

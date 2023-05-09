@@ -1,8 +1,8 @@
 let session;
 
 function setSessionAuth() {
-    if (rule == 1 || rule == 2) {
-        if (!caseItem.isArchived) {
+    if (role == 1 || role == 2) {
+        if (client.isArchived !== 'true') {
 
             const edit_btn = document.createElement('button')
             edit_btn.type = "button"
@@ -23,7 +23,7 @@ function setSessionAuth() {
             remove_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
                 + ' إزالة الجلسة'
             remove_btn.onclick = function () {
-                confirmDeleteSession();
+                confirmDeleteSession(session.id);
             }
             const session_operation = document.getElementById('sessionOpperation')
             session_operation.innerHTML = ''
@@ -52,14 +52,22 @@ function viewSession(id) {
         url: 'session.json',
         dataType: 'json',
         success: function (response) {
-            document.getElementById('sessionNumber').innerHTML = response.number;
-            document.getElementById('sessionDetails').innerHTML = response.details;
-            document.getElementById('sessionDate').innerHTML = response.date;
+
+
+            for (var i = 0; i < response.length; i++) {
+                if (response[i].id === id)
+                    session = response[i];
+            }
+
+
+
+            document.getElementById('sessionNumber').innerHTML = session.number;
+            document.getElementById('sessionDetails').innerHTML = session.details;
+            document.getElementById('sessionDate').innerHTML = session.date;
             setSessionAuth();
 
-            setSessionAttachments(response)
+            setSessionAttachments(session)
             /// ضبط الآيدي مشان وقت بدي احذف هي الجلسة
-            session = response;
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('حدث خطأ: ' + textStatus + ' ' + errorThrown);
@@ -99,8 +107,8 @@ function viewSession(id) {
         opperation.classList.add('d-flex', 'justify-content-evenly');
         opperation.append(downloadOp)
 
-        if (rule == 1 || rule == 2) {
-            if (!caseItem.isArchived) {
+        if (role == 1 || role == 2) {
+            if (client.isArchived !== 'true') {
 
                 const removeOp = document.createElement('button');
                 removeOp.title = 'حذف المرفق';
@@ -209,7 +217,9 @@ function addNewSessionAttachment() {
     });
 }
 
-function deleteSession(id) {
+function deleteSession() {
+    id = $('#deleteSessionBackdrop').data('session-id');
+
     console.log(id)
     $.ajax({
         url: "deletesession.php", // اسم ملف php الذي يقوم بالحذف
@@ -235,11 +245,13 @@ function addNewAttachmentSession() {
 }
 
 
-function confirmDeleteSession() {
+function confirmDeleteSession(id) {
     $('#deleteSessionBackdrop').modal('show');
     $('#deleteSessionBackdrop').css('background', 'rgba(0,0,0,.3)');
+    $('#deleteSessionBackdrop').data('session-id', id);
+
     document.getElementById('deleteSessionButton').onclick = function () {
-        deleteSession(session.id)
+        deleteSession()
     }
 }
 

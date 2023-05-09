@@ -5,14 +5,6 @@
 
 })();
 
-//////////////////////الوقت
-function updateTime() {
-    var now = new Date();
-    // jQuery('#time').val(now.toString());   
-    document.getElementById("time").innerHTML = now.toString();
-}
-
-setInterval(updateTime, 1000);
 
 /********************* */
 

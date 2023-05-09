@@ -1,8 +1,8 @@
 let decision;
 
 function setDecisionAuth() {
-    if (rule == 1 || rule == 2) {
-        if (!caseItem.isArchived) {
+    if (role == 1 || role == 2) {
+        if (caseItem.isArchived!=='true') {
 
             const edit_btn = document.createElement('button')
             edit_btn.type = "button"
@@ -23,7 +23,7 @@ function setDecisionAuth() {
             remove_btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
                 + ' إزالة القرار'
             remove_btn.onclick = function () {
-                confirmDeleteDecision();
+                confirmDeleteDecision(decision.id);
             }
             const decision_operation = document.getElementById('decisionOpperation')
             decision_operation.innerHTML = ''
@@ -38,19 +38,24 @@ function setDecisionAuth() {
 function viewDecision(id) {
 
 
+    console.log(id)
     // جلب البيانات من ملف JSON
     $.ajax({
         url: 'decision.json',
         dataType: 'json',
         success: function (response) {
-            document.getElementById('decisionNumber').innerHTML = response.number;
-            document.getElementById('decisionDate').innerHTML = response.date;
-            document.getElementById('decisionDetails').innerHTML = response.details;
+            for (var i = 0; i < response.length; i++) {
+                if (response[i].id === id)
+                    decision = response[i];
+            }
+
+            document.getElementById('decisionNumber').innerHTML = decision.number;
+            document.getElementById('decisionDate').innerHTML = decision.date;
+            document.getElementById('decisionDetails').innerHTML = decision.details;
 
             setDecisionAuth();
 
             /// ضبط الآيدي مشان وقت بدي احذف هي الجلسة
-            decision = response;
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('حدث خطأ: ' + textStatus + ' ' + errorThrown);
@@ -62,7 +67,9 @@ function viewDecision(id) {
 
 
 
-function deleteDecision(id) {
+function deleteDecision() {
+    id = $('#deleteDecisionBackdrop').data('decision-id');
+
     console.log(id)
     $.ajax({
         url: "deletesession.php", // اسم ملف php الذي يقوم بالحذف
@@ -80,11 +87,13 @@ function deleteDecision(id) {
 
 
 
-function confirmDeleteDecision() {
+function confirmDeleteDecision(id) {
     $('#deleteDecisionBackdrop').modal('show');
     $('#deleteDecisionBackdrop').css('background', 'rgba(0,0,0,.3)');
+    
+    $('#deleteDecisionBackdrop').data('decision-id', id);
     document.getElementById('deleteDecisionButton').onclick = function () {
-        deleteDecision(session.id)
+        deleteDecision()
     }
 }
 
@@ -167,10 +176,10 @@ function confirmEditDecision() {
 function addDecisionRow(table, decision) {
 
 
-    const decisionID = decision.number;
+    const decisionID = decision.id;
     row = document.createElement('tr');
     num = document.createElement('td');
-    num.append(decisionID);
+    num.append(decision.number);
 
     date = document.createElement('td');
     date.append(decision.date);
@@ -215,8 +224,8 @@ function addDecisionRow(table, decision) {
     viewOpLi.classList = 'operationMenuItem'
     operationMenu.append(viewOpLi)
 
-    if (rule == 1 || rule == 2) {
-        if (!caseItem.isArchived) {
+    if (role == 1 || role == 2) {
+        if (caseItem.isArchived!=='true') {
 
             const deleteBtn = document.createElement('button');
             deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-text-bottom" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>'
@@ -225,9 +234,19 @@ function addDecisionRow(table, decision) {
             deleteBtn.classList.add('btn', 'btn-danger', 'menu-operations-btn');
             deleteBtn.setAttribute("data-bs-toggle", "modal")
             deleteBtn.setAttribute("data-bs-target", "#deleteDecisionBackdrop")
-            document.getElementById('deleteDecisionButton').onclick = function () {
-                deleteDecision(decisionID)
+            
+            
+            
+            deleteBtn.setAttribute('data-decision-id', decisionID)
+            deleteBtn.onclick = function () {
+                $('#deleteDecisionBackdrop').data('decision-id', deleteBtn.getAttribute('data-decision-id'));
+                document.getElementById('deleteDecisionButton').onclick = function () {
+                    deleteDecision()
+                }
+        
             }
+
+
             const delOpLi = document.createElement('li');
             delOpLi.append(deleteBtn)
             delOpLi.classList = 'operationMenuItem'

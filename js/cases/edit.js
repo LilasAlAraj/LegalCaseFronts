@@ -7,26 +7,16 @@
         ;
 })();
 
-//////////////////////الوقت
-function updateTime() {
-    var now = new Date();
-    // jQuery('#time').val(now.toString());   
-    document.getElementById("time").innerHTML = now.toString();
-
-}
-
-setInterval(updateTime, 1000);
 /////////////////////
 
 let data, caseItem;
-let role = 1; //1->admin , 2->secretaria, 3->lawyer, 4->client
-let caseID;
+let userID;
 
 
 
 $(document).ready(function () {
-    caseID = new URLSearchParams(window.location.search).get("id");
-    console.log(caseID)
+    userID = new URLSearchParams(window.location.search).get("id");
+    console.log(userID)
     // جلب البيانات من ملف JSON
     $.ajax({
         url: 'test.json',
@@ -36,7 +26,7 @@ $(document).ready(function () {
 
 
             function isBigEnough(value) {
-                return value.id == caseID;
+                return value.id == userID;
             }
 
             data = response.filter(isBigEnough);
@@ -152,7 +142,7 @@ function edit() {
         submitHandler: function (form) {
 
             case_ = collectData();
-            case_['id'] = caseID;
+            case_['id'] = userID;
             console.log(case_)
 
             $.ajaxSetup({

@@ -3,7 +3,7 @@
     "id": 859,
     "case_title": "قضية الإيقاف",
     "date": "2022-05-20",
-    "isArchived":"true",
+    "isArchived":"false",
     "plaintiff_names": [
       "سارة علي",
       "يارا علي"
@@ -38,6 +38,18 @@
             "details": "details"
           }
         ]
+      },
+      {
+        "id": 1245,
+        "date": "2022-05-28",
+        "details": "هنا نجد تفاصيل القضية الخاصة بمحكمة الجنح وبلاها يا سيدي بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلا",
+        "attachment": [
+          {
+            "number": 1,
+            "type": "type",
+            "details": "details"
+          }
+        ]
       }
     ],
     "decisions": [
@@ -58,6 +70,10 @@
       {
         "id": 2,
         "type": "photo",
+        "details": "pla pla pla"
+      }, {
+        "id": 3,
+        "type": "pdf",
         "details": "pla pla pla"
       }
     ]

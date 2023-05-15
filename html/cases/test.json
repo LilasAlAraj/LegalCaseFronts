@@ -77,5 +77,82 @@
         "details": "pla pla pla"
       }
     ]
+  },{
+    "id": 789,
+    "case_title": "قضية القتل",
+    "date": "2022-05-20",
+    "isArchived":"false",
+    "plaintiff_names": [
+      "أمجد عثمان"
+    ],
+    "plaintiff_lawyers": [
+      "محمد علي"
+    ],
+    "defendant_names": [
+      "يوسف حسن"
+    ],
+    "defendant_lawyers": [
+      "أحمد محمد"
+    ],
+    "case_numbers": [
+      "9012/2022",
+      "8010/2023"
+    ],
+    "court": "محكمة الصلح",
+    "room": "غرفة الجلسات",
+    "state": 3,
+    "waqae": "waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae waqae ",
+    "eltemas": "eltemas eltemas eltemas eltemas eltemas eltemas eltemas eltemas ",
+    "sessions": [
+      {
+        "id": 123,
+        "date": "2022-05-25",
+        "details": "هنا نجد تفاصيل القضية الخاصة بمحكمة الجنح وبلاها يا سيدي بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلا",
+        "attachment": [
+          {
+            "number": 1,
+            "type": "type",
+            "details": "details"
+          }
+        ]
+      },
+      {
+        "id": 1245,
+        "date": "2022-05-28",
+        "details": "هنا نجد تفاصيل القضية الخاصة بمحكمة الجنح وبلاها يا سيدي بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلاوبلا بلا",
+        "attachment": [
+          {
+            "number": 1,
+            "type": "type",
+            "details": "details"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": 123,
+        "number": "20214",
+        "date": "2022-05-25",
+        "details": "القرار الخاص بالمحكمة وقد صدر وأفهم علناً"
+      },
+      {
+        "id": 124,
+        "number": "35714",
+        "date": "2022-06-25",
+        "details": "القرار الخاص بالمحكمة وقد صدر وأفهم علناً غير قابل للطعن"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 2,
+        "type": "photo",
+        "details": "pla pla pla"
+      }, {
+        "id": 3,
+        "type": "pdf",
+        "details": "pla pla pla"
+      }
+    ]
   }
 ]

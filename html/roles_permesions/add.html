@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="ليبرا هو بيتك القانوني.. وأكثر! يقوم بإدارة مكتبك وعملائك.. ويقوم بتنظيم الملفات والمهام.">
+    <meta name="keywords"
+        content="law firms management system, law, cases management system, cases, tasks, lawyers, lawyer, court">
+    <meta name="author" content="Lilas">
+    <meta name="generator" content="Lilas">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <title>Libra</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <link href="../../css/navs.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <header class="navbar sticky-top sticky-top flex-md-nowrap p-0 shadow" style="background-color:  rgb(7, 48, 78);">
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
+            <div class="imgcontainer">
+
+                <img src="../../Img/Logo.jpg" alt="Avatar" class="avatar">
+            </div>
+        </a>
+
+        <div class="navbar-nav col-md-1 col-lg-1">
+            <div class="nav-item text-nowrap ">
+                <p class=" px-3 m-2" id="time">time</p>
+            </div>
+        </div>
+        <div class="navbar-nav col-md-8 col-lg-9" style=" text-align:left;">
+            <div class="nav-item text-nowrap ">
+                <a class="nav-link  px-3" href="#">تسجيل الخروج</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+
+
+
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 col-sm-12 d-md-block  sidebar collapse">
+                <div class="position-sticky pt-3  sidebar-sticky ">
+                    <ul class=" nav nav-pills flex-column mb-auto ">
+                        <li class="mb-1 nav-item" id="dashboardNav">
+
+                        </li>
+                        <li class="mb-1 nav-item ">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#cases-collapse" aria-expanded="false">
+                                <span data-feather="file" class="align-text-bottom"></span>
+                                القضايا
+                            </button>
+
+                            <div class="collapse collapse-items" id="cases-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                                    <li id="addNewCaseNav">
+
+                                    </li>
+                                    <li id="addNewPrivateCaseNav">
+
+                                    </li>
+                                    <li id="viewCaseNav">
+                                        <a href="../cases/view.html" class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="file-text" class="align-text-bottom"></span>
+                                            عرض القضايا
+                                        </a>
+                                    </li>
+                                    <li id="viewPrivateCaseNav">
+                                        
+                                    </li>
+                                    <li id="retreiveCaseNav">
+
+                                    </li>
+                                    <li id="archiveCaseNav">
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <div id="tasksLi">
+                        </div>
+
+                        <div id="clientsLi">
+                        </div>
+
+                        <div id="membersLi">
+                        </div>
+
+                        <li class="mb-1 nav-item ">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#settings-collapse" aria-expanded="false">
+                                <span data-feather="settings" class="align-text-bottom"></span>
+                                الإعدادات
+                            </button>
+
+                            <div class="collapse" id="settings-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">
+                                    <li id="courtSettingsNav">
+                                    </li>
+                                    <li id="role_permessionSettingsNav">
+                                    </li>
+
+                                    <li><a href="../users/account_settings.html"
+                                            class="nav-link d-inline-flex  collapse-items">
+                                            <span data-feather="tool" class="align-text-bottom"></span>
+                                            إعدادات حسابي
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 col-lg-10 col-sm-12">
+                <div id="big-frame">
+                    <div class="container  d-flex justify-content-between">
+                        <h1> إضافة دور جديد وتعيين صلاحياته</h1>
+                    </div>
+                    <hr>
+                    <form id='addRole_form' class="search-options" method="post">
+                        <div class="container ">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="role_name"><b>اسم الدور</b></label>
+                                    <input type="text" id="role_name" placeholder="أدخل اسم الدور" name="role_name"
+                                        required>
+                                </div>
+                            </div>
+
+                            <fieldset class="row">
+                                <legend>الصلاحيات:</legend>
+                                <div class="col-3">
+
+
+                                    <input type="checkbox" id="add_new_case" name="permissions[]"
+                                        value="إضافة قضية جديدة">
+                                    <label for="add-_new_case"> إضافة قضية جديدة</label><br>
+
+                                    <input type="checkbox" id="view_cases" name="permissions[]" value="عرض القضايا">
+                                    <label for="view_cases">عرض القضايا</label><br>
+
+                                    <input type="checkbox" id="similar_cases" name="permissions[]"
+                                        value="استرجاع القضايا المشابهة">
+                                    <label for="similar_cases">استرجاع القضايا المشابهة</label><br>
+
+                                    <input type="checkbox" id="archive_cases" name="permissions[]"
+                                        value="أرشيف القضايا">
+                                    <label for="archive_cases">أرشيف القضايا</label><br>
+
+                                    <input type="checkbox" id="view_case" name="permissions[]" value="عرض قضية">
+                                    <label for="view_case">عرض قضية</label><br>
+
+                                    <input type="checkbox" id="edit_case" name="permissions[]" value="تعديل قضية">
+                                    <label for="edit_case">تعديل قضية</label><br>
+
+                                    <input type="checkbox" id="archive_case" name="permissions[]" value="أرشفة قضية">
+                                    <label for="archive_case">أرشفة قضية</label><br>
+
+                                    <input type="checkbox" id="unarchive_case" name="permissions[]"
+                                        value="إلغاء أرشفة قضية">
+                                    <label for="unarchive_case">إلغاء أرشفة قضية</label><br>
+
+                                    <input type="checkbox" id="view_case_details" name="permissions[]"
+                                        value="عرض تفاصيل قضية">
+                                    <label for="view_case_details">عرض تفاصيل قضية</label><br>
+
+                                    <input type="checkbox" id="edit_case_details" name="permissions[]"
+                                        value="تعديل تفاصيل قضية">
+                                    <label for="edit_case_details">تعديل تفاصيل قضية</label><br>
+
+                                    <input type="checkbox" id="view_case_state" name="permissions[]"
+                                        value="عرض حالة قضية">
+                                    <label for="view_case_state">عرض حالة قضية</label><br>
+
+                                    <input type="checkbox" id="edit_case_state" name="permissions[]"
+                                        value="تعديل حالة قضية">
+                                    <label for="edit_case_state">تعديل حالة قضية</label><br>
+
+                                    <input type="checkbox" id="view_session" name="permissions[]"
+                                        value="عرض جلسات قضية">
+                                    <label for="view_session">عرض جلسات قضية</label><br>
+
+                                    <input type="checkbox" id="add_session" name="permissions[]"
+                                        value="إضافة جلسة قضية">
+                                    <label for="add_session">إضافة جلسة قضية</label><br>
+
+                                </div>
+                                <div class="col-3">
+
+
+                                    <input type="checkbox" id="delete_session" name="permissions[]"
+                                        value="حذف جلسة قضية">
+                                    <label for="delete_session">حذف جلسة قضية</label><br>
+
+                                    <input type="checkbox" id="edit_session" name="permissions[]"
+                                        value="تعديل جلسة قضية">
+                                    <label for="edit_session">تعديل جلسة قضية</label><br>
+
+                                    <input type="checkbox" id="add_attachment_session" name="permissions[]"
+                                        value="إضافة مرفق جلسة قضية">
+                                    <label for="add_attachment_session">إضافة مرفق جلسة قضية</label><br>
+
+                                    <input type="checkbox" id="view_attachment_session" name="permissions[]"
+                                        value="عرض مرفق جلسة قضية">
+                                    <label for="view_attachment_session">عرض مرفق جلسة قضية</label><br>
+
+                                    <input type="checkbox" id="delete_attachment_session" name="permissions[]"
+                                        value="حذف مرفق جلسة قضية">
+                                    <label for="delete_attachment_session">حذف مرفق جلسة قضية</label><br>
+
+                                    <input type="checkbox" id="download_attachment_session" name="permissions[]"
+                                        value="تنزيل مرفق جلسة قضية">
+                                    <label for="download_attachment_session">تنزيل مرفق جلسة قضية</label><br>
+
+                                    <input type="checkbox" id="add_attachment_case" name="permissions[]"
+                                        value="إضافة مرفق قضية">
+                                    <label for="add_attachment_case">إضافة مرفق قضية</label><br>
+
+                                    <input type="checkbox" id="view_attachment_case" name="permissions[]"
+                                        value="عرض مرفق قضية">
+                                    <label for="view_attachment_case">عرض مرفق قضية</label><br>
+
+                                    <input type="checkbox" id="delete_attachment_case" name="permissions[]"
+                                        value="حذف مرفق قضية">
+                                    <label for="delete_attachment_case">حذف مرفق قضية</label><br>
+
+                                    <input type="checkbox" id="download_attachment_case" name="permissions[]"
+                                        value="تنزيل مرفق قضية">
+                                    <label for="download_attachment_case">تنزيل مرفق قضية</label><br>
+
+                                    <input type="checkbox" id="add_decision_case" name="permissions[]"
+                                        value="إضافة قرار قضية">
+                                    <label for="add_decision_case">إضافة قرار قضية</label><br>
+
+                                    <input type="checkbox" id="view_decicion_case" name="permissions[]"
+                                        value="عرض قرار قضية">
+                                    <label for="view_decicion_case">عرض قرار قضية</label><br>
+
+                                    <input type="checkbox" id="delete_decision_case" name="permissions[]"
+                                        value="حذف قرار قضية">
+                                    <label for="delete_decision_case">حذف قرار قضية</label><br>
+
+                                    <input type="checkbox" id="download_decision_case" name="permissions[]"
+                                        value="تعديل قرار قضية">
+                                    <label for="download_decision_case">تعديل قرار قضية</label><br>
+                                </div>
+                                <div class="col-3">
+
+
+                                    <input type="checkbox" id="search_case_by_title" name="permissions[]"
+                                        value="بحث عن قضية بموضوع الدعوى">
+                                    <label for="search_case_by_title">بحث عن قضية بموضوع الدعوى</label><br>
+
+                                    <input type="checkbox" id="search_case_by_number" name="permissions[]"
+                                        value="بحث عن قضية برقم القضية">
+                                    <label for="search_case_by_number">بحث عن قضية برقم القضية</label><br>
+
+                                    <input type="checkbox" id="search_case_by_state" name="permissions[]"
+                                        value="بحث عن قضية بحالة القضية">
+                                    <label for="search_case_by_state">بحث عن قضية بحالة القضية</label><br>
+
+                                    <input type="checkbox" id="search_case_by_court" name="permissions[]"
+                                        value="بحث عن قضية باسم المحكمة">
+                                    <label for="search_case_by_court">بحث عن قضية باسم المحكمة</label><br>
+
+                                    <input type="checkbox" id="search_case_by_lawyer" name="permissions[]"
+                                        value="بحث عن قضية باسم المحامي">
+                                    <label for="search_case_by_lawyer">بحث عن قضية باسم المحامي</label><br>
+
+                                    <input type="checkbox" id="search_case_by_client" name="permissions[]"
+                                        value="بحث عن قضية باسم الموكل">
+                                    <label for="search_case_by_client">بحث عن قضية باسم الموكل</label><br>
+
+                                    <input type="checkbox" id="search_case_by_year" name="permissions[]"
+                                        value="بحث عن قضية بالعام ">
+                                    <label for="search_case_by_year">بحث عن قضية بالعام </label><br>
+
+
+
+                                    <input type="checkbox" id="add_new_task" name="permissions[]"
+                                        value="إضافة مهمة جديدة">
+                                    <label for="add_new_task">إضافة مهمة جديدة</label><br>
+
+                                    <input type="checkbox" id="view_tasks" name="permissions[]" value="عرض المهام">
+                                    <label for="view_tasks">عرض المهام</label><br>
+
+                                    <input type="checkbox" id="add_new_client" name="permissions[]"
+                                        value="إضافة عميل جديد">
+                                    <label for="add_new_client">إضافة عميل جديد</label><br>
+
+                                    <input type="checkbox" id="view_clients" name="permissions[]" value="عرض العملاء">
+                                    <label for="view_clients">عرض العملاء</label><br>
+
+                                    <input type="checkbox" id="view_client" name="permissions[]" value="عرض العميل">
+                                    <label for="view_client">عرض العميل</label><br>
+
+                                    <input type="checkbox" id="edit_client" name="permissions[]" value="تعديل العميل">
+                                    <label for="edit_client">تعديل العميل</label><br>
+
+                                    <input type="checkbox" id="search_client_by_name" name="permissions[]"
+                                        value="بحث عن عميل بالاسم ">
+                                    <label for="search_client_by_name">بحث عن عميل بالاسم </label><br>
+                                </div>
+                                <div class="col-3">
+
+
+                                    <input type="checkbox" id="add_new_member" name="permissions[]"
+                                        value="إضافة فرد جديد">
+                                    <label for="add_new_member">إضافة فرد جديد</label><br>
+
+                                    <input type="checkbox" id="view_clients" name="permissions[]" value="عرض الأفراد">
+                                    <label for="view_members">عرض الأفراد</label><br>
+
+                                    <input type="checkbox" id="view_clients" name="permissions[]" value="عرض الفرد">
+                                    <label for="view_member">عرض الفرد</label><br>
+
+                                    <input type="checkbox" id="edit_client" name="permissions[]" value="تعديل الفرد">
+                                    <label for="edit_member">تعديل الفرد</label><br>
+
+                                    <input type="checkbox" id="search_member_by_name" name="permissions[]"
+                                        value="بحث عن فرد بالاسم ">
+                                    <label for="search_member_by_name">بحث عن فرد بالاسم </label><br>
+
+                                    <input type="checkbox" id="change_account_setting" name="permissions[]"
+                                        value="تغيير إعدادات الحساب">
+                                    <label for="change_account_setting">تغيير إعدادات الحساب </label><br>
+
+                                    <input type="checkbox" id="add_new_court" name="permissions[]"
+                                        value="إضافة محكمة جديدة">
+                                    <label for="add_new_court">إضافة محكمة جديدة</label><br>
+
+                                    <input type="checkbox" id="view_courts" name="permissions[]" value="عرض المحاكم">
+                                    <label for="view_courts">عرض المحاكم</label><br>
+
+                                    <input type="checkbox" id="add_new_court" name="permissions[]"
+                                        value="إضافة دور جديد">
+                                    <label for="add_new_role_permissions">إضافة دور جديد</label><br>
+
+                                    <input type="checkbox" id="view_courts" name="permissions[]" value="عرض الأدوار">
+                                    <label for="view_role_permissions">عرض الأدوار</label><br>
+
+                                    <input type="checkbox" id="lawyer_dashboard" name="permissions[]"
+                                        value="لوحة قيادة المحامي">
+                                    <label for="lawyer_dashboard">لوحة قيادة المحامي</label><br>
+
+                                    <input type="checkbox" id="secretaria_dashboard" name="permissions[]"
+                                        value="لوحة قيادة السكرتاريا">
+                                    <label for="secretaria_dashboard">لوحة قيادة السكرتاريا</label><br>
+
+                                    <input type="checkbox" id="supervisor_dashboard" name="permissions[]"
+                                        value="لوحة قيادة المدير">
+                                    <label for="supervisor_dashboard">لوحة قيادة المدير</label><br>
+
+                                    <input type="checkbox" id="client_dashboard" name="permissions[]"
+                                        value="لوحة قيادة العميل">
+                                    <label for="client_dashboard">لوحة قيادة العميل</label><br>
+                                </div>
+                            </fieldset>
+                            <div id="addRoleError" class="error">
+                            </div>
+                            <button type="submit" id="add_btn">إضافة</button>
+
+                        </div>
+
+
+                    </form>
+            </main>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+
+
+    <script src="../../js/users/auth.js"></script>
+    <script src="../../js/navs.js"></script>
+    <script src="../../js/roles_permesions/add.js"></script>
+
+
+
+
+</body>
+
+</html>

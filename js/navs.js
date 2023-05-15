@@ -26,12 +26,42 @@ function setNavAuth() {
   setClientNavAuth(dots);
   setMemberNavAuth(dots);
   setCourtSettingsAuth(dots);
+  setDashboardNavAuth(dots);
 }
+
+function setDashboardNavAuth(dots) {
+  let location;
+  if (role == 1) {
+    location = 'dashboard/supervisor.html';
+  } else if (role == 2) {
+    location = 'dashboard/secretaria.html';
+  } else if (role == 3) {
+    location = 'dashboard/lawyer.html';
+  } else if (role == 4) {
+    location = 'dashboard/client.html';
+  }
+
+
+
+  document.getElementById('dashboardNav').innerHTML = '<a href="' + dots + location + '" class="nav-link d-inline-flex  collapse-items">'
+    + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home align-text-bottom" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>'
+    + 'لوحة القيادة'
+    + '</a>'
+}
+
+
 function setCourtSettingsAuth(dots) {
   if (role == 2) {
     document.getElementById('courtSettingsNav').innerHTML = '<a href="' + dots + 'courts/view.html" class="nav-link d-inline-flex  collapse-items">'
       + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-text-bottom" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>'
       + 'المحاكم'
+      + '</a>'
+  }
+
+  else if (role == 1) {
+    document.getElementById('role_permessionSettingsNav').innerHTML = '<a href="' + dots + 'roles_permesions/view.html" class="nav-link d-inline-flex  collapse-items">'
+      + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders align-text-bottom" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>'
+      + 'أدوار المستخدمين وصلاحياتهم'
       + '</a>'
   }
 }
@@ -94,6 +124,17 @@ function setClientNavAuth(dots) {
 
 
 function setTaskNavAuth(dots) {
+
+
+  addNewTask = '';
+  if (role == 1 || role == 2)
+    addNewTask = '<li>'
+      + '<a href="' + dots + 'tasks/add.html" class="nav-link d-inline-flex  collapse-items">'
+      + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
+      + 'إضافة مهمة جديدة'
+      + '</a>'
+      + '</li>';
+
   if (role != 4) {
     document.getElementById('tasksLi').innerHTML = '<li class="mb-1 nav-item ">'
       + '<button '
@@ -104,12 +145,7 @@ function setTaskNavAuth(dots) {
       + '</button>'
       + '<div class="collapse" id="task-collapse">'
       + '<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ">'
-      + '<li>'
-      + '<a href="' + dots + 'tasks/add.html" class="nav-link d-inline-flex  collapse-items">'
-      + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>'
-      + 'إضافة مهمة جديدة'
-      + '</a>'
-      + '</li>'
+      + addNewTask
       + '<li><a href="' + dots + 'tasks/view.html" class="nav-link d-inline-flex  collapse-items">'
       + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-watch align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><polyline points="12 9 12 12 13.5 13.5"></polyline><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"></path></svg>'
       + 'عرض المهام'
@@ -126,6 +162,11 @@ function setCaseNavAuth(dots) {
     document.getElementById('retreiveCaseNav').innerHTML = '<a href="' + dots + 'cases/retreive_cases.html" class="nav-link d-inline-flex collapse-items L-Affiliate-Tagged">'
       + '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search align-text-bottom" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>'
       + 'استرجاع القضايا المشابهة'
+      + '</a>'
+
+    document.getElementById('addNewPrivateCaseNav').innerHTML = '<a href="' + dots + 'cases/add.html?private_case=true" class="nav-link d-inline-flex collapse-items L-Affiliate-Tagged">'
+      + '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star align-text-bottom"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
+      + 'إضافة قضية خاصة'
       + '</a>'
   }
   if (role == 1 || role == 2) {

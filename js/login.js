@@ -63,22 +63,18 @@ function login() {
         // Perform login logic with phone number
 
         if (isValidPhoneNumber(phone)) {
-          $.ajaxSetup({
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-          });
-
+          
           $.ajax({
             url: "http://127.0.0.1:8000/login",
             type: "POST",
             data: {
-              //    "_token": "{{ csrf_token() }}",
-              "phone": phone,
+              _token: '{{csrf_token()}}',
+              "username": phone,
               "password": password,
               "remember": remember
-            },
+            }, dataType: "json",
             success: function (response) {
+              console.log(response)
               if (response.status == 'success') {
                 console.log(response);
 
@@ -105,7 +101,7 @@ function login() {
 }
 try { login(); }
 catch (e) {
- // logMyErrors(e); // pass exception object to error handler
+  // logMyErrors(e); // pass exception object to error handler
   alert(e);
 
 }

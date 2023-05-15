@@ -811,7 +811,7 @@ function addNewAttachment() {
 
 
             $.ajax({
-                url: 'add_new_session.php',
+                url: 'bla/bla',
                 method: 'POST',
                 data: formData,
                 processData: false,
@@ -829,14 +829,9 @@ function addNewAttachment() {
             });
         }
     });
-
-
 }
-
 
 function closeModal() {
     // حذف المعلومات المخزنة في ذاكرة التخزين المؤقت للجلسة
     sessionStorage.clear();
-    console.log('// إغلاق النافذة المنبثقة')
-
 }

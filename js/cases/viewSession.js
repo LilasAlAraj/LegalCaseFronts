@@ -2,7 +2,7 @@ let session;
 
 function setSessionAuth() {
     if (role == 1 || role == 2) {
-        if (client.isArchived !== 'true') {
+        if (caseItem.isArchived !== 'true') {
 
             const edit_btn = document.createElement('button')
             edit_btn.type = "button"
@@ -108,7 +108,7 @@ function viewSession(id) {
         opperation.append(downloadOp)
 
         if (role == 1 || role == 2) {
-            if (client.isArchived !== 'true') {
+            if (caseItem.isArchived !== 'true') {
 
                 const removeOp = document.createElement('button');
                 removeOp.title = 'حذف المرفق';

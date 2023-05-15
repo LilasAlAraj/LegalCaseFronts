@@ -127,12 +127,9 @@ function showPassword(name) {
     }
 }
 
+function closeModal() {
+    // حذف المعلومات المخزنة في ذاكرة التخزين المؤقت للجلسة
+    sessionStorage.clear();
+    console.log('// إغلاق النافذة المنبثقة')
 
-
-
-
-
-
-
-
-
+}

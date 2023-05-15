@@ -8,7 +8,6 @@
         content="ليبرا هو بيتك القانوني.. وأكثر! يقوم بإدارة مكتبك وعملائك.. ويقوم بتنظيم الملفات والمهام.">
     <meta name="keywords"
         content="law firms management system, law, cases management system, cases, tasks, lawyers, lawyer, court">
-
     <meta name="author" content="Lilas">
     <meta name="generator" content="Lilas">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -24,8 +23,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-    <link href="../../../css/navs.css" rel="stylesheet">
-    <link href="../../../css/style.css" rel="stylesheet">
+    <link href="../../css/navs.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 
 
 </head>
@@ -41,7 +40,7 @@
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
             <div class="imgcontainer">
 
-                <img src="../../../Img/Logo.jpg" alt="Avatar" class="avatar">
+                <img src="../../Img/Logo.jpg" alt="Avatar" class="avatar">
             </div>
         </a>
 
@@ -59,6 +58,7 @@
 
     <div class="container-fluid">
         <div class="row">
+
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 col-sm-12 d-md-block  sidebar collapse">
                 <div class="position-sticky pt-3  sidebar-sticky ">
                     <ul class=" nav nav-pills flex-column mb-auto ">
@@ -81,7 +81,7 @@
 
                                     </li>
                                     <li id="viewCaseNav">
-                                        <a href="../../cases/view.html" class="nav-link d-inline-flex  collapse-items">
+                                        <a href="../cases/view.html" class="nav-link d-inline-flex  collapse-items">
                                             <span data-feather="file-text" class="align-text-bottom"></span>
                                             عرض القضايا
                                         </a>
@@ -140,125 +140,36 @@
                 <div id="big-frame">
                     <div class="container  d-flex justify-content-between">
 
-                        <h1>عرض العملاء</h1>
-                        <div id="addNewClientButton" style="display: flex; align-items: center;">
+                        <h1> أدوار المستخدمين وصلاحياتهم</h1>
+                        <div id="addNewRolePermissionBtn" style="display: flex; align-items: center;">
                         </div>
                     </div>
                     <hr>
                     <div class="container">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link tab searchBy active " id="all-tab" data-bs-toggle="tab"
-                                    data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane"
-                                    aria-selected="true" onclick="displayAll()">
-                                    عرض الكل
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link tab searchBy" id="by-title-tab" data-bs-toggle="tab"
-                                    data-bs-target="#by-name-tab-pane" type="button" role="tab"
-                                    aria-controls="by-name-tab-pane" aria-selected="false">
-                                    بحث بالاسم
-                                </button>
-                            </li>
 
-                        </ul>
-
-
-                        <div class="tab-content" id="myTabContent">
-
-                            <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel"
-                                aria-labelledby="all-tab" tabindex="0">
-                                <br>
-
-                            </div>
-                            <div class="tab-pane fade" id="by-name-tab-pane" role="tabpanel"
-                                aria-labelledby="by-name-tab" tabindex="0">
-                                <form id="searchByName" class="search-options" action="get">
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label for="name"><b>اسم العميل</b></label>
-                                            <input type="text" id="name" name="name" placeholder="الرجاء ادخال الاسم"
-                                                required>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="container" style="padding: 0;">
-                                        <button type="submit" id="search-button" class="operations-btn btn btn-success"
-                                            onclick="searchByName()">
-                                            <span data-feather="search" class="align-text-bottom"></span>
-                                            ابحث
-
-                                        </button>
-                                        <button type="reset" id="remove-button" class="operations-btn btn btn-danger">
-                                            <span data-feather="x-circle" class="align-text-bottom"></span>
-                                            امسح
-                                        </button>
-
-
-                                        <span id="error" class="error">
-                                        </span>
-                                    </div>
-                                    <hr>
-
-
-                                </form>
-                            </div>
-
-
-
-                        </div>
                         <table class="table table-bordered  table-striped ">
                             <thead>
                                 <tr>
-                                    <th>الاسم الكامل</th>
-                                    <th>اسم الأب</th>
-                                    <th>اسم الأم</th>
-                                    <th>رقم الهاتف</th>
-                                    <th>العمليات</th>
+                                    <th>اسم الدور</th>
+                                    <th>الصلاحيات </th>
                                 </tr>
 
                             </thead>
                             <tbody id="table-body"></tbody>
                         </table>
-                        <div class="container" style="text-align: right;display: flex; justify-content:space-between">
-                            <nav aria-label="Page navigation example" class="row">
-                                <ul id="pagination" class="pagination"></ul>
-                            </nav>
-
-
-                            <button style='height: 100%;' id='reverse-btn' type="button" data-display='asc'
-                                class="operations-btn btn" onclick="reverseData()">
-                                <span data-feather="refresh-cw" class="align-text-bottom"></span>
-
-                                عرض تنازلي
-
-                            </button>
-
-                        </div>
                     </div>
-
-
                 </div>
-
             </main>
         </div>
     </div>
-
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
         crossorigin="anonymous"></script>
 
 
-    <script src="../../../js/users/auth.js"></script>
-    <script src="../../../js/navs.js"></script>
-    <script src="../../../js/users/clients/view_clients.js"></script>
+    <script src="../../js/users/auth.js"></script>
+    <script src="../../js/navs.js"></script>
+    <script src="../../js/roles_permesions/view.js"></script>
 
 
 

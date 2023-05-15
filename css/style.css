@@ -35,13 +35,15 @@ form:not(.search-options) {
 #imgcontainer {
     text-align: center;
     position: relative;
-  }
-  
-  img#avatar {
+}
+
+img#avatar {
     width: 25%;
     border-radius: 50%;
-  }
+}
 
+b,
+legend,
 label {
     color: rgb(7, 48, 78);
 }
@@ -246,6 +248,8 @@ tr.clickable-row:hover th,
 tr.clickable-row:hover td {
     color: white
 }
+
+#add-courts-button,
 #add-members-button,
 #add-clients-button,
 #edit_state-button,
@@ -326,6 +330,6 @@ tr.clickable-row:hover td {
 
 .btn-warning,
 
-.btn-warning:hover{
+.btn-warning:hover {
     color: white;
 }
